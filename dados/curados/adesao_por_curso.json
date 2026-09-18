@@ -1,0 +1,322 @@
+{
+  "serie": "Adesão discente por curso — CPAR 2014-2025 (percentuais declarados, sem recálculo forcado)",
+  "observacao": "2014-2016 ponto anual; 2017 lacuna global; 2018-2020 sem recorte por curso na Tabela de Adesão (lacuna declarada); 2021-2022 dois pontos semestrais; 2023 ponto anual; 2024-2025 dois pontos. Medicina Veterinária só desde 2023. Ordem normalizada para participantes/total.",
+  "pontos": [
+    {
+      "rotulo": "2014",
+      "adm": {
+        "part": 39,
+        "total": 192,
+        "pct": 20.31
+      },
+      "mat": {
+        "part": 33,
+        "total": 92,
+        "pct": 35.82
+      },
+      "psi": {
+        "part": 27,
+        "total": 151,
+        "pct": 17.88
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2014 Tab.1 p.16 (Mat 0902 1/0 fora)"
+    },
+    {
+      "rotulo": "2015",
+      "adm": {
+        "part": 97,
+        "total": 198,
+        "pct": 48.99
+      },
+      "mat": {
+        "part": 43,
+        "total": 90,
+        "pct": 47.78
+      },
+      "psi": {
+        "part": 58,
+        "total": 137,
+        "pct": 42.34
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2015 Tab.1 p.25-26"
+    },
+    {
+      "rotulo": "2016",
+      "adm": {
+        "part": 114,
+        "total": 191,
+        "pct": 59.69
+      },
+      "mat": {
+        "part": 49,
+        "total": 101,
+        "pct": 48.51
+      },
+      "psi": {
+        "part": 65,
+        "total": 131,
+        "pct": 49.62
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2016 Tab.1 p.26"
+    },
+    {
+      "rotulo": "2017",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Lacuna declarada: sem tabela global/por curso (FONTE_RSA_2017)"
+    },
+    {
+      "rotulo": "2018-1",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.3 (FONTE_RSA_2018 p.18)"
+    },
+    {
+      "rotulo": "2018-2",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.3"
+    },
+    {
+      "rotulo": "2019-1",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.3 (FONTE_RSA_2019 p.17)"
+    },
+    {
+      "rotulo": "2019-2",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.3"
+    },
+    {
+      "rotulo": "2020-1",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.10 (FONTE_RSA_2020 p.74, remoto)"
+    },
+    {
+      "rotulo": "2020-2",
+      "adm": null,
+      "mat": null,
+      "psi": null,
+      "medvet": null,
+      "prov": "Sem recorte por curso na Tab.10"
+    },
+    {
+      "rotulo": "2021-1",
+      "adm": {
+        "part": 89,
+        "total": 221,
+        "pct": 40.27
+      },
+      "mat": {
+        "part": 33,
+        "total": 125,
+        "pct": 26.4
+      },
+      "psi": {
+        "part": 70,
+        "total": 198,
+        "pct": 35.35
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2021 Tab.5 p.15-16"
+    },
+    {
+      "rotulo": "2021-2",
+      "adm": {
+        "part": 31,
+        "total": 180,
+        "pct": 17.22
+      },
+      "mat": {
+        "part": 26,
+        "total": 112,
+        "pct": 23.21
+      },
+      "psi": {
+        "part": 27,
+        "total": 188,
+        "pct": 14.36
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2021 Tab.5"
+    },
+    {
+      "rotulo": "2022-1",
+      "adm": {
+        "part": 96,
+        "total": 213,
+        "pct": 45.07
+      },
+      "mat": {
+        "part": 36,
+        "total": 109,
+        "pct": 33.03
+      },
+      "psi": {
+        "part": 70,
+        "total": 198,
+        "pct": 35.35
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2022 Tab.1 p.9"
+    },
+    {
+      "rotulo": "2022-2",
+      "adm": {
+        "part": 74,
+        "total": 160,
+        "pct": 46.25
+      },
+      "mat": {
+        "part": 18,
+        "total": 67,
+        "pct": 28.87
+      },
+      "psi": {
+        "part": 36,
+        "total": 171,
+        "pct": 21.08
+      },
+      "medvet": null,
+      "prov": "FONTE_RSA_2022 Tab.1 p.9"
+    },
+    {
+      "rotulo": "2023",
+      "adm": {
+        "part": 98,
+        "total": 177,
+        "pct": 55.37
+      },
+      "mat": {
+        "part": 21,
+        "total": 73,
+        "pct": 28.77
+      },
+      "psi": {
+        "part": 77,
+        "total": 186,
+        "pct": 41.4
+      },
+      "medvet": {
+        "part": 15,
+        "total": 39,
+        "pct": 38.46
+      },
+      "prov": "FONTE_RSA_2023 Tab.1 p.10 (primeira com MV; pico pós-pandemia)"
+    },
+    {
+      "rotulo": "2024-1",
+      "adm": {
+        "part": 72,
+        "total": 169,
+        "pct": 42.6
+      },
+      "mat": {
+        "part": 11,
+        "total": 47,
+        "pct": 23.4
+      },
+      "psi": {
+        "part": 9,
+        "total": 165,
+        "pct": 5.45
+      },
+      "medvet": {
+        "part": 19,
+        "total": 72,
+        "pct": 26.39
+      },
+      "prov": "FONTE_RSA_2024 Tab.1 p.11 (greve ~70 dias)"
+    },
+    {
+      "rotulo": "2024-2",
+      "adm": {
+        "part": 41,
+        "total": 145,
+        "pct": 28.28
+      },
+      "mat": {
+        "part": 8,
+        "total": 36,
+        "pct": 22.22
+      },
+      "psi": {
+        "part": 25,
+        "total": 157,
+        "pct": 15.92
+      },
+      "medvet": {
+        "part": 21,
+        "total": 72,
+        "pct": 29.17
+      },
+      "prov": "FONTE_RSA_2024 Tab.1 p.11"
+    },
+    {
+      "rotulo": "2025-1",
+      "adm": {
+        "part": 58,
+        "total": 181,
+        "pct": 32.04
+      },
+      "mat": {
+        "part": 9,
+        "total": 53,
+        "pct": 16.98
+      },
+      "psi": {
+        "part": 47,
+        "total": 170,
+        "pct": 27.65
+      },
+      "medvet": {
+        "part": 39,
+        "total": 115,
+        "pct": 33.91
+      },
+      "prov": "FONTE_RSA_2025 Tab.1 p.13 (Mat minimo historico)"
+    },
+    {
+      "rotulo": "2025-2",
+      "adm": {
+        "part": 40,
+        "total": 150,
+        "pct": 26.67
+      },
+      "mat": {
+        "part": 13,
+        "total": 46,
+        "pct": 28.26
+      },
+      "psi": {
+        "part": 25,
+        "total": 157,
+        "pct": 15.92
+      },
+      "medvet": {
+        "part": 25,
+        "total": 109,
+        "pct": 22.94
+      },
+      "prov": "FONTE_RSA_2025 Tab.1 p.13"
+    }
+  ]
+}

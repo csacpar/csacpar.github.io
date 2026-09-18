@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "dados/curados/dip_evadidos.json",
+    "sha256_origem": "5253a6208014eb457772e7b637f66e4bfa0a23ba80e2185ea46d083e6ae0daf3",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "curado",
+    "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"
+  },
+  "serie": "Diplomados (2017-2024) x Evadidos (2017-2025) por curso — periodos distintos, nao comparar como taxa",
+  "nota": "% Feminino = parcela de genero dentro do curso. % Total (evadidos) = parcela dos 577 evadidos, NAO taxa de evasao. Taxa de evasao (linha base §9.2): Adm 9,08; Psi 4,53; Mat 14,73; MV 1,29.",
+  "diplomados": {
+    "periodo": "2017-2024",
+    "total": 458,
+    "media_ano": 57,
+    "fem": 320,
+    "masc": 138,
+    "fem_pct": 69.87,
+    "cursos": [
+      {
+        "nome": "Psicologia",
+        "total": 198,
+        "fem": 163,
+        "masc": 35,
+        "fem_pct": 82.32
+      },
+      {
+        "nome": "Administração",
+        "total": 174,
+        "fem": 104,
+        "masc": 70,
+        "fem_pct": 59.77
+      },
+      {
+        "nome": "Matemática",
+        "total": 86,
+        "fem": 53,
+        "masc": 33,
+        "fem_pct": 61.63
+      },
+      {
+        "nome": "Medicina Veterinária",
+        "total": null,
+        "obs": "Aguarda 2028"
+      }
+    ]
+  },
+  "evadidos": {
+    "periodo": "2017-2025",
+    "total": 577,
+    "pct_ingressantes": 43.6,
+    "fem": 305,
+    "masc": 272,
+    "cursos": [
+      {
+        "nome": "Administração",
+        "total": 230,
+        "fem": 113,
+        "masc": 117,
+        "share": 39.88
+      },
+      {
+        "nome": "Matemática",
+        "total": 210,
+        "fem": 86,
+        "masc": 124,
+        "share": 36.39
+      },
+      {
+        "nome": "Psicologia",
+        "total": 133,
+        "fem": 102,
+        "masc": 31,
+        "share": 23.05
+      },
+      {
+        "nome": "Medicina Veterinária",
+        "total": 4,
+        "fem": 4,
+        "masc": 0,
+        "share": 0.69
+      }
+    ]
+  },
+  "balanco": {
+    "ingressantes": 1323,
+    "diplomados": 458,
+    "evadidos": 577,
+    "interrupcoes": 912,
+    "ativos_2025_1": 519,
+    "sucesso_global": 34.62,
+    "formula": "Diplomados / Ingressantes (§8.6)"
+  },
+  "prov": "Consolidado §§8.3, 8.4, 8.6, 11.1"
+}

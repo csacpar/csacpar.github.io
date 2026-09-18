@@ -1,0 +1,120 @@
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge">{{ICO:chapeu}} Cursos</span>
+  <h1>Os cursos em números</h1>
+  <p>Ingressantes, ocupação de vagas, diplomação e evasão dos quatro cursos do CPAR de 2017 a 2025, com as metas do PDU 2025 a 2030.</p>
+</section>
+<div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Os números vêm do sistema acadêmico da UFMS (SISCAD/SIGAA), reunidos pelo câmpus para o período de 2017 a 2025. O ano de 2017 está marcado com asterisco porque foi calculado a partir dos totais. A Medicina Veterinária começou em 2023 e forma a primeira turma em 2028. Diplomados e evadidos cobrem períodos diferentes, então não dá para dividir um pelo outro. Os anos de pandemia (2020 a 2022) pedem cautela na comparação.</span></div>
+
+<section class="card">
+  <h2>{{ICO:grafico}} Ingressantes por ano (total 1.323)</h2>
+  <p class="frase" id="frase-ing">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-ing" role="img" aria-label="Gráfico de barras empilhadas de ingressantes por curso de 2017 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-ing"></div>
+  <div id="tab-ing"></div>
+  <p><button class="btn btn-outline btn-sm" id="btn-csv-ing">Baixar ingressantes em CSV (ponto e vírgula, UTF-8)</button></p>
+  <p class="prov" id="prov-ing"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:barras}} Retrato 2025.1: ocupação das vagas por curso</h2>
+  <p class="frase" id="frase-perfil">Carregando...</p>
+  <div class="grafico"><canvas id="graf-perfil" role="img" aria-label="Gráfico de barras horizontais da ocupação de vagas por curso em 2025.1"></canvas></div>
+  <div id="tab-perfil"></div>
+  <p class="prov" id="prov-perfil"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:pessoas}} Diplomados (2017 a 2024) e evadidos (2017 a 2025)</h2>
+  <p class="frase" id="frase-dip">Carregando...</p>
+  <div class="grafico"><canvas id="graf-dip" role="img" aria-label="Gráfico de barras de diplomados e evadidos por curso"></canvas></div>
+  <div id="tab-dip"></div>
+  <p class="nota" id="nota-dip"></p>
+  <p class="prov" id="prov-dip"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:predio}} Onde estamos e aonde queremos chegar: metas 2030</h2>
+  <p class="frase" id="frase-metas">Carregando...</p>
+  <div class="tabela-rolagem">
+    <table class="table-dados" id="tab-metas"><thead><tr><th scope="col">Indicador</th><th scope="col">Administração</th><th scope="col">Psicologia</th><th scope="col">Matemática</th><th scope="col">Medicina Veterinária</th></tr></thead><tbody></tbody></table>
+  </div>
+  <p class="nota">Cada célula mostra a linha de base e a meta para 2030. Em retenção e evasão, quanto menor, melhor. Medicina Veterinária não tem base de diplomação (primeira turma em 2028).</p>
+  <p><button class="btn btn-outline btn-sm" id="btn-csv-metas">Baixar metas em CSV (ponto e vírgula, UTF-8)</button></p>
+  <details class="tabela-dados"><summary>Como cada indicador é calculado</summary><ul id="formulas"></ul></details>
+  <p class="prov" id="prov-metas"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:check}} Marcos desta série</h2>
+  <ul>
+    <li><strong>2023:</strong> Medicina Veterinária entra com 37 ingressantes; o total do câmpus volta a 170 após o mínimo de 106 em 2022.</li>
+    <li><strong>Turmas de 2020 e 2021 (pandemia):</strong> diplomação em 2024 de 22% (Administração) e 42,5% (Psicologia), abaixo do esperado; o Consolidado recomenda programa de recuperação (R1.2).</li>
+    <li><strong>Retenção acima de 20% nos três cursos consolidados;</strong> meta de 15% ou menos até 2030 (R1.3).</li>
+    <li><strong>Matemática em situação crítica:</strong> ocupação de ingresso 64,11%, ocupação de curso 51,46%, evasão 14,73%, diplomação 34,78%; plano emergencial R1.1 com meta de 85% de ingresso até 2027.</li>
+    <li><strong>2028:</strong> primeira turma formada da Medicina Veterinária; meta de diplomação de 70% nesse ano.</li>
+  </ul>
+  <p class="prov">Fonte: Consolidado de Indicadores, seções 9.1 e 11.3. Fundação dos cursos: Resolução COUN nº 10, de 3 de maio de 2001 (Administração, Matemática e Psicologia). Códigos e-MEC: Administração 52136, Matemática 52139, Psicologia 52141, Medicina Veterinária 1260587.</p>
+</section>
+
+<script>
+(function () {
+  var CUR = [["adm", "Administração"], ["psi", "Psicologia"], ["mat", "Matemática"], ["medvet", "Medicina Veterinária"]];
+  CSA.carregar(["ingressantes.json", "perfil2025.json", "dip_evadidos.json", "metas_pdu.json"]).then(function (r) {
+    var ing = r[0], perf = r[1], dip = r[2], met = r[3];
+    var anos = ing.anos, rot = anos.map(function (a) { return a.rotulo; });
+    var min = anos.reduce(function (m, a) { return a.total < m.total ? a : m; }, anos[0]), max = anos.reduce(function (m, a) { return a.total > m.total ? a : m; }, anos[0]);
+    document.getElementById("frase-ing").innerHTML = "<strong>Os ingressos caíram até " + min.total + " em " + min.rotulo + " e se recuperaram com a Medicina Veterinária</strong>: " + anos[anos.length - 1].total + " em " + anos[anos.length - 1].rotulo + ". Matemática recebeu " + ing.totais.mat + " estudantes no período, o menor volume entre os cursos consolidados.";
+    var g = CSA.grafico("graf-ing", { type: "bar", data: { labels: rot, datasets: CUR.map(function (c) { return { label: c[1], data: anos.map(function (a) { return a[c[0]]; }) }; }) },
+      options: { scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } }, plugins: { tooltip: { callbacks: { title: function (i) { var a = anos[i[0].dataIndex]; return "Ano " + a.rotulo.replace("*", "") + (a.derivado ? " (derivado por subtração exata)" : "") + ": total " + a.total; } } } } } });
+    document.getElementById("filtros-ing").innerHTML = CUR.map(function (c, i) { return '<label><input type="checkbox" data-serie="' + i + '" checked> ' + c[1] + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-ing", g);
+    var linhas = anos.map(function (a) { return [a.rotulo, a.adm, a.psi, a.mat, a.medvet, a.total]; });
+    linhas.push(["Total 2017 a 2025", ing.totais.adm, ing.totais.psi, ing.totais.mat, ing.totais.medvet, ing.totais.total]);
+    CSA.tabelaDados("tab-ing", ["Ano", "Administração", "Psicologia", "Matemática", "Medicina Veterinária", "Total"], linhas);
+    document.getElementById("btn-csv-ing").addEventListener("click", function () {
+      var l = ["ano;administracao;psicologia;matematica;medicina_veterinaria;total;observacao"];
+      anos.forEach(function (a) { l.push([a.rotulo.replace("*", ""), a.adm, a.psi, a.mat, a.medvet === null ? "" : a.medvet, a.total, a.derivado ? "derivado por subtracao exata" : ""].join(";")); });
+      CSA.baixarCSV("ingressantes_cpar_2017_2025.csv", l);
+    });
+    document.getElementById("prov-ing").textContent = "Fonte: " + ing.prov + ". " + ing.nota_metodo;
+
+    var cs = perf.cursos.slice().sort(function (a, b) { return a.ocup - b.ocup; });
+    var corSt = function (s) { return s === "CRÍTICO" ? CSA.COR.frag : (s === "Excelente" ? CSA.PALETA[0] : CSA.COR.bem); };
+    document.getElementById("frase-perfil").innerHTML = "<strong>" + CSA.fmtInt(perf.total) + " estudantes ativos</strong> em 2025.1 (" + CSA.fmtPct(perf.fem_pct) + " mulheres), ocupando " + CSA.fmtPct(perf.ocup_geral) + " das " + perf.total_vagas + " vagas acumuladas. Matemática ocupa só " + CSA.fmtPct(cs[0].ocup) + " das suas vagas, situação classificada como crítica; Medicina Veterinária, " + CSA.fmtPct(cs[cs.length - 1].ocup) + ".";
+    CSA.grafico("graf-perfil", { type: "bar", data: { labels: cs.map(function (c) { return c.nome; }), datasets: [{ label: "Ocupação 2025.1", data: cs.map(function (c) { return c.ocup; }), backgroundColor: cs.map(function (c) { return corSt(c.status); }), borderColor: cs.map(function (c) { return corSt(c.status); }) }] },
+      options: { indexAxis: "y", interaction: { mode: "nearest", axis: "y", intersect: false }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (i) { var c = cs[i.dataIndex]; return " " + CSA.fmtPct(c.ocup) + ": " + c.mat + " matriculados de " + c.vagas + " vagas (" + c.status + ")"; } } } }, scales: { x: { min: 0, max: 100, ticks: { callback: function (v) { return v + "%"; } } } } } });
+    CSA.tabelaDados("tab-perfil", ["Curso", "Matriculados", "Vagas acumuladas", "Ocupação", "Situação"], cs.map(function (c) { return [c.nome, c.mat, c.vagas, CSA.fmtPct(c.ocup), c.status]; }));
+    document.getElementById("prov-perfil").textContent = "Fonte: " + perf.prov + ". Vagas acumuladas = vagas anuais multiplicadas pela duração mínima do curso.";
+
+    var nomes = CUR.map(function (c) { return c[1]; });
+    var dv = nomes.map(function (n) { var f = dip.diplomados.cursos.filter(function (x) { return x.nome === n; })[0]; return f ? f.total : null; });
+    var ev = nomes.map(function (n) { var f = dip.evadidos.cursos.filter(function (x) { return x.nome === n; })[0]; return f ? f.total : null; });
+    var b = dip.balanco;
+    document.getElementById("frase-dip").innerHTML = "<strong>" + b.diplomados + " diplomados em oito anos e " + b.evadidos + " evadidos em nove</strong>. Psicologia forma mais (" + dv[1] + ") e Administração e Matemática concentram a evasão (" + ev[0] + " e " + ev[2] + "). A cada 100 ingressantes de 2017 a 2025, " + CSA.fmtNum(b.sucesso_global, 0) + " se formaram até 2024.";
+    CSA.grafico("graf-dip", { type: "bar", data: { labels: nomes, datasets: [{ label: "Diplomados 2017 a 2024", data: dv, cor: CSA.PALETA[0] }, { label: "Evadidos 2017 a 2025", data: ev, cor: CSA.PALETA[1] }] },
+      options: { scales: { y: { beginAtZero: true } }, plugins: { tooltip: { callbacks: { afterBody: function () { return "Períodos distintos: sem taxa direta entre as barras."; } } } } } });
+    CSA.tabelaDados("tab-dip", ["Curso", "Diplomados 2017 a 2024", "Evadidos 2017 a 2025"], nomes.map(function (n, i) { return [n, dv[i] === null ? "Aguarda 2028" : dv[i], ev[i]]; }));
+    document.getElementById("nota-dip").textContent = "Taxa de evasão semestral (linha de base do PDU): Administração 9,08%; Psicologia 4,53%; Matemática 14,73%; Medicina Veterinária 1,29%. Interrupções temporárias no período: " + CSA.fmtInt(b.interrupcoes) + ".";
+    document.getElementById("prov-dip").textContent = "Fonte: " + dip.prov + ". " + dip.nota;
+
+    document.getElementById("frase-metas").innerHTML = "<strong>Até 2030 o câmpus quer ocupar pelo menos 85% das vagas de ingresso em todos os cursos e reduzir a retenção a 15%.</strong> A distância maior está em Matemática: ocupação de ingresso de " + CSA.fmtPct(met.indicadores[0].base.mat) + " para " + met.indicadores[0].meta2030.mat + "% e diplomação de " + CSA.fmtPct(met.indicadores[2].base.mat) + " para " + met.indicadores[2].meta2030.mat + "%.";
+    document.querySelector("#tab-metas tbody").innerHTML = met.indicadores.map(function (ind) {
+      var inv = ind.id === "retencao" || ind.id === "evasao";
+      function cel(k) {
+        var b0 = ind.base[k], m = ind.meta2030[k];
+        if (b0 === null || b0 === undefined) return '<td><span class="sem-dado">sem base</span>' + (m !== null && m !== undefined ? " (meta " + m + "%)" : "") + "</td>";
+        var alerta = inv ? (b0 > m * 1.5) : (b0 < m * 0.8);
+        return "<td" + (alerta ? ' style="background:var(--frag-bg);color:var(--frag-text);font-weight:600"' : "") + ">" + CSA.fmtPct(b0) + " para " + m + "%</td>";
+      }
+      return "<tr><th scope=\"row\">" + CSA.esc(ind.nome) + "</th>" + cel("adm") + cel("psi") + cel("mat") + cel("medvet") + "</tr>";
+    }).join("");
+    document.getElementById("btn-csv-metas").addEventListener("click", function () {
+      var l = ["indicador;adm_base;adm_2030;psi_base;psi_2030;mat_base;mat_2030;mv_base;mv_2030"];
+      met.indicadores.forEach(function (ind) { l.push([ind.nome, CSA.csvNum(ind.base.adm), ind.meta2030.adm, CSA.csvNum(ind.base.psi), ind.meta2030.psi, CSA.csvNum(ind.base.mat), ind.meta2030.mat, CSA.csvNum(ind.base.medvet), ind.meta2030.medvet === null ? "" : ind.meta2030.medvet].join(";")); });
+      CSA.baixarCSV("metas_pdu_cpar_2025_2030.csv", l);
+    });
+    document.getElementById("formulas").innerHTML = Object.keys(met.formulas).map(function (k) { return "<li>" + CSA.esc(met.formulas[k]) + "</li>"; }).join("");
+    document.getElementById("prov-metas").textContent = "Fonte: " + met.prov + ". Células destacadas: base distante da meta (abaixo de 80% da meta, ou acima de 150% quando menor é melhor).";
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

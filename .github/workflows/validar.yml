@@ -1,0 +1,35 @@
+name: Validar derivados
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerar derivados
+        run: python3 scripts/gerar_dados.py
+      - name: Derivados versionados devem coincidir com os regenerados
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess, sys
+          # Compara ignorando a chave _meta.gerado_em (data do dia)
+          alterados = subprocess.run(["git","diff","--name-only","--","docs/data"],capture_output=True,text=True).stdout.split()
+          ruins = []
+          for a in alterados:
+              novo = json.loads(pathlib.Path(a).read_text(encoding="utf-8"))
+              velho = json.loads(subprocess.run(["git","show","HEAD:"+a],capture_output=True,text=True).stdout)
+              for d in (novo, velho): d.get("_meta",{}).pop("gerado_em",None)
+              if novo != velho: ruins.append(a)
+          if ruins:
+              print("Derivados desatualizados no commit:", ruins); sys.exit(1)
+          print("Derivados coerentes com a base.")
+          PY
+      - name: Validar
+        run: python3 scripts/validar.py

@@ -1,0 +1,6 @@
+*.pyc
+.DS_Store
+Thumbs.db
+__pycache__/
+_to_delete/
+trabalho/

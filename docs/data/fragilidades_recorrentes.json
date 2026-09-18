@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "dados/curados/fragilidades_recorrentes.json",
+    "sha256_origem": "b0cf9389130cad2e64054149590066da854430e98a2b6f5c617b93326800c8be",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "curado",
+    "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"
+  },
+  "serie": "Fragilidades e oportunidades recorrentes — CPAR (foco 2022-2025 comparável; memória 2014-2021)",
+  "nota_metodo": "2022 a 2025 no mesmo instrumento SIAI permitem contar recorrência. 2014 a 2021 em instrumento distinto: memória sem contagem de ciclos. A contagem de ciclos segue a classificação declarada em cada relatório (critério CPA/MEC pela distribuição das respostas: 1 e 2 fragilidade, 3 oportunidade, 4 e 5 bem avaliado). Médias declaradas, sem recálculo.",
+  "recorrentes_2022_2025": [
+    {
+      "tema": "Espaços esportivos",
+      "2022": 2.77,
+      "2023": 1.7,
+      "2024": 1.46,
+      "2025": 1.87,
+      "ciclos_fragil": 4,
+      "status": "Classificado como fragilidade pelos relatórios nos 4 ciclos (em 2022 a média foi 2,77, com 38% de respostas 1 e 2); Complexo Poliesportivo em andamento (Quadro 3, P1, até 2o sem/2026, meta 3,0)",
+      "prov": "TAB17 2022 p.21; TAB17 2023; TAB17 2024; TAB19 2025 item 12"
+    },
+    {
+      "tema": "Alimentação (RU/cantina)",
+      "2022": 3.6,
+      "2023": 2.53,
+      "2024": 2.5,
+      "2025": 2.78,
+      "ciclos_fragil": 3,
+      "status": "Oportunidade em 2022; fragilidade 2023-2025; projeto refeitório até jun/2025 (Quadro 3, P2)",
+      "prov": "idem item 13"
+    },
+    {
+      "tema": "Transporte",
+      "2022": 3.4,
+      "2023": 2.61,
+      "2024": 2.91,
+      "2025": 3.88,
+      "ciclos_fragil": 2,
+      "status": "Oportunidade 2022; fragilidade 2023-2024; oportunidade 2025 (+0,97); sem registro formal no Quadro 2 (lacuna)",
+      "prov": "idem item 28; Quadro 2 transporte sem registro"
+    },
+    {
+      "tema": "Internet",
+      "2022": 4.05,
+      "2023": 3.24,
+      "2024": 3.44,
+      "2025": 3.49,
+      "ciclos_fragil": 0,
+      "ciclos_oport": 3,
+      "status": "Bem avaliado 2022; oportunidade 2023-2025; parecer AGETIC até mar/2025 (Quadro 3, P2)",
+      "prov": "idem item 7"
+    },
+    {
+      "tema": "Instalações sanitárias",
+      "2022": 4.39,
+      "2023": 3.48,
+      "2024": 3.24,
+      "2025": 3.42,
+      "ciclos_oport": 3,
+      "status": "Oportunidade 2023-2025 (grave em Matemática 2,70 em 2025); ação Mat P2 (Quadro 6)",
+      "prov": "idem item 5; TAB39 2025 2,70"
+    },
+    {
+      "tema": "Convivência",
+      "2022": 4.39,
+      "2023": 3.38,
+      "2024": 3.18,
+      "2025": 3.51,
+      "ciclos_oport": 3,
+      "status": "Oportunidade 2023-2024; bem avaliado 2025 (+0,33); provisória até ago/2025 (Quadro 3)",
+      "prov": "idem item 11"
+    },
+    {
+      "tema": "Laboratórios e práticas",
+      "2022": 4.43,
+      "2023": 3.38,
+      "2024": 3.47,
+      "2025": 3.68,
+      "ciclos_oport": 3,
+      "status": "Oportunidade 2023-2025; Bloco 4 etapa 01 em andamento, Vet P1",
+      "prov": "idem item 10"
+    },
+    {
+      "tema": "Egressos (acompanhamento)",
+      "2022": 2.67,
+      "2023": 3.25,
+      "2024": null,
+      "2025": null,
+      "ciclos_fragil": 1,
+      "status": "Fragilidade 2022; oportunidade 2023; realizada com SECAC/COAC em 2025 (Quadro 2) — unico resultado mensuravel do periodo",
+      "prov": "TAB13 2022 Q3 2,67; TAB13 2023 Q1 4,25/Q2 4,00/Q3 3,25; Quadro 2 2024/2025"
+    },
+    {
+      "tema": "Capacitação de técnicos",
+      "2022": 4.06,
+      "2023": 3.33,
+      "2024": 2.89,
+      "2025": 3.88,
+      "ciclos_fragil": 1,
+      "status": "Fragilidade nova em 2024 (2,89, menor media do relatorio); oportunidade 2025 (3,88); assimetria com docentes como achado central",
+      "prov": "TAB8 2022 Q1 4,06; TAB8 2023 Q1 3,33; TAB8 2024 Q1 2,89; TAB9 2025 Q1 3,88"
+    },
+    {
+      "tema": "Divulgação de resultados e melhorias",
+      "2022_serv": 1.33,
+      "2023_disc": 3.9,
+      "2024_disc": 3.56,
+      "2025_disc": 3.61,
+      "status": "Fragilidade grave entre servidores 2022 (1,33; 67% discordam totalmente); oportunidade discente 2023-2025 com 26-29% NSR; informe semestral P2 em 2025 (Quadro 1 CSA)",
+      "prov": "TAB3 2022 Q2 1,33; TAB2 2023 Q2 3,90; TAB2 2024 Q2 3,56; TAB2 2025 Q2 3,61"
+    },
+    {
+      "tema": "Adesão discente",
+      "2022": 38.84,
+      "2023": 44.42,
+      "2024": 24.5,
+      "2025": 29.5,
+      "unidade": "% 1a etapa",
+      "status": "Fragilidade estrutural; meta 35% 1a etapa (Quadro 1 CSA, P2, mar-out/2026); Mat 16,98% minimo em 2025-1",
+      "prov": "TAB1 adesao 2022-2025"
+    }
+  ]
+}

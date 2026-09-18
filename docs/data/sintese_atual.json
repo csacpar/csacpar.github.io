@@ -1,0 +1,208 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "base_de_conhecimento/fontes_estruturadas/FONTE_RSA_2025.md",
+    "sha256_origem": "f4ca149b80c8ec790e270066ff3ce49cf901adaac24348f332cfd10c720fd81f",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "extraido",
+    "nota": "Recorte da tabela de infraestrutura do ano cruzado com infraestrutura_2022_2025.json, fragilidades_recorrentes.json e planos_acao.json"
+  },
+  "ano_ref": 2025,
+  "criticos": [
+    {
+      "id": "esportivos",
+      "rotulo": "Espaços esportivos",
+      "media": 1.87,
+      "classe": "fragilidade",
+      "serie": {
+        "2022": 2.77,
+        "2023": 1.7,
+        "2024": 1.46,
+        "2025": 1.87
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 12",
+      "acao": "Classificado como fragilidade pelos relatórios nos 4 ciclos (em 2022 a média foi 2,77, com 38% de respostas 1 e 2); Complexo Poliesportivo em andamento (Quadro 3, P1, até 2o sem/2026, meta 3,0)",
+      "acao_prov": "TAB17 2022 p.21; TAB17 2023; TAB17 2024; TAB19 2025 item 12",
+      "ciclos_fragil": 4,
+      "ciclos_oport": null
+    },
+    {
+      "id": "alimentacao",
+      "rotulo": "Alimentação (RU e cantina)",
+      "media": 2.78,
+      "classe": "oportunidade",
+      "serie": {
+        "2022": 3.6,
+        "2023": 2.53,
+        "2024": 2.5,
+        "2025": 2.78
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 13",
+      "acao": "Oportunidade em 2022; fragilidade 2023-2025; projeto refeitório até jun/2025 (Quadro 3, P2)",
+      "acao_prov": "idem item 13",
+      "ciclos_fragil": 3,
+      "ciclos_oport": null
+    },
+    {
+      "id": "sanitarias",
+      "rotulo": "Instalações sanitárias",
+      "media": 3.42,
+      "classe": "oportunidade",
+      "serie": {
+        "2022": 4.39,
+        "2023": 3.48,
+        "2024": 3.24,
+        "2025": 3.42
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 5",
+      "acao": "Oportunidade 2023-2025 (grave em Matemática 2,70 em 2025); ação Mat P2 (Quadro 6)",
+      "acao_prov": "idem item 5; TAB39 2025 2,70",
+      "ciclos_fragil": null,
+      "ciclos_oport": 3
+    },
+    {
+      "id": "internet",
+      "rotulo": "Internet",
+      "media": 3.49,
+      "classe": "oportunidade",
+      "serie": {
+        "2022": 4.05,
+        "2023": 3.24,
+        "2024": 3.44,
+        "2025": 3.49
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 7",
+      "acao": "Bem avaliado 2022; oportunidade 2023-2025; parecer AGETIC até mar/2025 (Quadro 3, P2)",
+      "acao_prov": "idem item 7",
+      "ciclos_fragil": 0,
+      "ciclos_oport": 3
+    }
+  ],
+  "fortes": [
+    {
+      "id": "secretaria_qualidade",
+      "rotulo": "Secretaria acadêmica (qualidade)",
+      "media": 4.89,
+      "classe": "bem_avaliado",
+      "serie": null,
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 29"
+    },
+    {
+      "id": "sigpos",
+      "rotulo": "SIGPOS",
+      "media": 4.81,
+      "classe": "bem_avaliado",
+      "serie": {
+        "2022": 4.66,
+        "2023": 4.11,
+        "2024": 4.32,
+        "2025": 4.81
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 26"
+    },
+    {
+      "id": "email",
+      "rotulo": "E-mail institucional",
+      "media": 4.69,
+      "classe": "bem_avaliado",
+      "serie": {
+        "2022": 4.66,
+        "2023": 4.43,
+        "2024": 4.43,
+        "2025": 4.69
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 9"
+    },
+    {
+      "id": "siscad",
+      "rotulo": "SISCAD",
+      "media": 4.62,
+      "classe": "bem_avaliado",
+      "serie": {
+        "2022": 4.63,
+        "2023": 4.32,
+        "2024": 4.42,
+        "2025": 4.62
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 25"
+    },
+    {
+      "id": "secretaria",
+      "rotulo": "Secretaria acadêmica (atendimento)",
+      "media": 4.54,
+      "classe": "bem_avaliado",
+      "serie": {
+        "2022": 4.6,
+        "2023": 4.37,
+        "2024": 4.08,
+        "2025": 4.54
+      },
+      "prov": "RSA 2025, Tabela 19, Infraestrutura pela comunidade, 29 itens, p. 45, item 27"
+    }
+  ],
+  "acoes": {
+    "total": 27,
+    "concluidas": 11,
+    "em_andamento": 12,
+    "nao_iniciadas": 4,
+    "pct_iniciadas": 85.0,
+    "prov": "FONTE_RSA_2025 Quadro 2",
+    "destaques": [
+      {
+        "tema": "Espaços esportivos",
+        "acao": "Complexo Poliesportivo em andamento",
+        "prazo": "2º semestre de 2026",
+        "prioridade": "P1",
+        "meta": "média 3,0",
+        "prov": "RSA 2025, Quadro 3"
+      },
+      {
+        "tema": "Alimentação",
+        "acao": "Projeto de refeitório e solução provisória",
+        "prazo": "jun/2025 e ago/2025",
+        "prioridade": "P2",
+        "prov": "RSA 2025, Quadro 3"
+      },
+      {
+        "tema": "Internet e climatização",
+        "acao": "Parecer técnico da AGETIC",
+        "prazo": "mar/2025",
+        "prioridade": "P2",
+        "prov": "RSA 2025, Quadro 3"
+      },
+      {
+        "tema": "Retenção e evasão",
+        "acao": "Monitoria e acompanhamento pelo SISCAD",
+        "prioridade": "P1",
+        "prov": "RSA 2025, Quadro 3"
+      },
+      {
+        "tema": "Medicina Veterinária",
+        "acao": "Bloco 4 e clínica veterinária",
+        "prioridade": "P1",
+        "prov": "RSA 2025, Quadro 3"
+      },
+      {
+        "tema": "Comunicação",
+        "acao": "Divulgação do SIAI e ouvidoria itinerante",
+        "prioridade": "P2",
+        "prov": "RSA 2025, Quadro 3"
+      }
+    ]
+  },
+  "adesao_total": {
+    "semestres": {
+      "2025-1": 33.59,
+      "2025-2": 29.54
+    },
+    "discentes_primeiro": 29.5,
+    "prov": "RSA 2025, Tabela 1, Adesão em 2025, p. 13"
+  },
+  "imagem": {
+    "estudantes_recomendar": 4.64,
+    "servidores_recomendar": 4.6,
+    "prov": "RSA 2025, Tabela 20, Imagem pelos Estudantes e Tabela 21, Imagem pelos Servidores"
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "esquema_banco/schema_cpar_historico.sql",
+    "sha256_origem": "081f0ad46ce5f4dcf2caeba220914f85c93eba91cfbea7cd436024786c8d842f",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "indice"
+  },
+  "ano_atual": 2025,
+  "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+  "raai_ufms": [
+    {
+      "id": 1,
+      "ano_ref": 2014,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "Relatorio ano base 2014",
+      "paginas": 281,
+      "data_aprovacao": null,
+      "drive_id": "1RbvTY65r3kjmF9rJlFuiuFXhP9BBV8WS",
+      "arquivo_md": "RAAI_2014_UFMS.md",
+      "cobertura": "parcial e seletiva"
+    },
+    {
+      "id": 2,
+      "ano_ref": 2015,
+      "periodo": "parcial",
+      "tipo": "parcial",
+      "titulo": "Relatorio parcial 2015",
+      "paginas": 39,
+      "data_aprovacao": null,
+      "drive_id": "1ccxj_BUmcQjCtNdUAQXb0DOFDBUGLVDJ",
+      "arquivo_md": "RAAI_2015_UFMS.md",
+      "cobertura": "integral do texto relevante, figuras sem tabela como lacuna"
+    },
+    {
+      "id": 3,
+      "ano_ref": 2016,
+      "periodo": "parcial",
+      "tipo": "parcial",
+      "titulo": "Relatorio parcial 2016",
+      "paginas": 39,
+      "data_aprovacao": null,
+      "drive_id": "1vXtz7jj8K5D-qKJbyPm1GARAfnilj7ss",
+      "arquivo_md": "RAAI_2016_UFMS.md",
+      "cobertura": "seletiva, valores de figuras como estimativa visual"
+    },
+    {
+      "id": 4,
+      "ano_ref": 2018,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2018",
+      "paginas": 544,
+      "data_aprovacao": "2019-03-13",
+      "drive_id": "1H3G1uVVRs8bQO1yQTCE1Bqxx4azAhkrv",
+      "arquivo_md": "RAAI_2018_UFMS.md",
+      "cobertura": "seletiva"
+    },
+    {
+      "id": 5,
+      "ano_ref": 2019,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2019",
+      "paginas": 525,
+      "data_aprovacao": "2020-03-03",
+      "drive_id": "1_3RhRFSlKSAIvEXH24YIjRW0xliohEY0",
+      "arquivo_md": "RAAI_2019_UFMS.md",
+      "cobertura": "seletiva"
+    },
+    {
+      "id": 6,
+      "ano_ref": 2020,
+      "periodo": "recorte",
+      "tipo": "recorte",
+      "titulo": "Trienio 2018-2020 recorte 2020",
+      "paginas": 762,
+      "data_aprovacao": "2021-03-15",
+      "drive_id": "1CJdQcwI3lW-gjhndrNc1xja4Z-CBJ_Gd",
+      "arquivo_md": "RAAI_2020_UFMS.md",
+      "cobertura": "seletiva do intervalo 2020"
+    },
+    {
+      "id": 7,
+      "ano_ref": 2021,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2021",
+      "paginas": 336,
+      "data_aprovacao": "2022-03-21",
+      "drive_id": "1zT6Tqg4en6CociBpgj9akEmLRYDqHIGS",
+      "arquivo_md": "RAAI_2021_UFMS.md",
+      "cobertura": "seletiva"
+    },
+    {
+      "id": 8,
+      "ano_ref": 2022,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2022",
+      "paginas": 82,
+      "data_aprovacao": "2023-03-21",
+      "drive_id": "1pJR_tPLIt5mbNS0rZjvUBMWgm_6UEGCM",
+      "arquivo_md": "RAAI_2022_UFMS.md",
+      "cobertura": "cerca de 70 pct"
+    },
+    {
+      "id": 9,
+      "ano_ref": 2023,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2023",
+      "paginas": 102,
+      "data_aprovacao": "2024-03-25",
+      "drive_id": "1UUAYjIFBBK3YV9z2QWanMDiN4nQFMkMH",
+      "arquivo_md": "RAAI_2023_UFMS.md",
+      "cobertura": "cerca de 60 pct"
+    },
+    {
+      "id": 10,
+      "ano_ref": 2024,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2024",
+      "paginas": 112,
+      "data_aprovacao": "2025-03-27",
+      "drive_id": "17wYpOdpldDD49xHe1aJQTeGYKtoxWs3N",
+      "arquivo_md": "RAAI_2024_UFMS.md",
+      "cobertura": "cerca de 65 pct"
+    },
+    {
+      "id": 11,
+      "ano_ref": 2025,
+      "periodo": "anual",
+      "tipo": "anual",
+      "titulo": "RAAI 2025",
+      "paginas": null,
+      "data_aprovacao": null,
+      "drive_id": null,
+      "arquivo_md": "RAAI_2025_UFMS.md",
+      "cobertura": "padrao da serie"
+    }
+  ],
+  "rsa_cpar": [
+    {
+      "ano_ref": 2014,
+      "arquivo_md": "RSA_2014_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2014.md",
+      "arquivo_pdf": "RelatorioCPA_CPAR_2014.pdf",
+      "url_publica": "https://seavi.ufms.br/files/2015/12/RelatorioCPA_CPAR_2014.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2015,
+      "arquivo_md": "RSA_2015_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2015.md",
+      "arquivo_pdf": "Relatorio_CPAR_2015.pdf",
+      "url_publica": "https://seavi.ufms.br/files/2016/05/Relatorio_CPAR_2015.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2016,
+      "arquivo_md": "RSA_2016_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2016.md",
+      "arquivo_pdf": "CPAR_RelatorioSetorial_2016.pdf",
+      "url_publica": "https://seavi.ufms.br/files/2017/03/CPAR_RelatorioSetorial_2016.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2017,
+      "arquivo_md": "RSA_2017_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2017.md",
+      "arquivo_pdf": "CPAR-2017.pdf",
+      "url_publica": "https://seavi.ufms.br/files/2017/12/CPAR-2017.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2018,
+      "arquivo_md": "RSA_2018_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2018.md",
+      "arquivo_pdf": "RELATORIO_CSAs_CPAR_2018.pdf",
+      "url_publica": "https://cpar.ufms.br/files/2022/06/RELATORIO_CSAs_CPAR_2018.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2019,
+      "arquivo_md": "RSA_2019_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2019.md",
+      "arquivo_pdf": "RELATORIO_CSAs_CPAR_-2019.pdf",
+      "url_publica": "https://cpar.ufms.br/files/2022/06/RELATORIO_CSAs_CPAR_-2019.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2020,
+      "arquivo_md": "RSA_2020_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2020.md",
+      "arquivo_pdf": "RELATORIO_CSAs_CPAR_2020.pdf",
+      "url_publica": "https://cpar.ufms.br/files/2022/06/RELATORIO_CSAs_CPAR_2020.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2021,
+      "arquivo_md": "RSA_2021_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2021.md",
+      "arquivo_pdf": "RESOLUCAO-N-432-CAS_CPAR_UFMS-DE-22-DE-NOVEMBRO-DE-2022.pdf",
+      "url_publica": "https://cpar.ufms.br/files/2023/01/RESOLUCAO-N-432-CAS_CPAR_UFMS-DE-22-DE-NOVEMBRO-DE-2022.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2022,
+      "arquivo_md": "RSA_2022_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2022.md",
+      "arquivo_pdf": "Relatorio-2022.pdf",
+      "url_publica": "https://cpar.ufms.br/files/2023/03/Relatorio-2022.pdf",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": null,
+      "paginas": null
+    },
+    {
+      "ano_ref": 2023,
+      "arquivo_md": "RSA_2023_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2023.md",
+      "arquivo_pdf": "Relatorio CSA 2023 - CPAR final.pdf",
+      "url_publica": "https://drive.google.com/file/d/1TLNSaCY-RPkV7mF0xFIt9kPOlF08E7tM/view",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": "1TLNSaCY-RPkV7mF0xFIt9kPOlF08E7tM",
+      "paginas": 78
+    },
+    {
+      "ano_ref": 2024,
+      "arquivo_md": "RSA_2024_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2024.md",
+      "arquivo_pdf": "Relatorio_CSA_CPAR_2024.pdf",
+      "url_publica": "https://drive.google.com/file/d/1gpStnKHQcyIGrrWFndyRNrH01YPab4_j/view",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": "1gpStnKHQcyIGrrWFndyRNrH01YPab4_j",
+      "paginas": 104
+    },
+    {
+      "ano_ref": 2025,
+      "arquivo_md": "RSA_2025_CPAR.md",
+      "fonte_md": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "arquivo_pdf": "Relatorio_CSA_CPAR_2025.pdf",
+      "url_publica": "https://drive.google.com/file/d/1uAM_wzI309jkHC2i2hh2Lz984I4vEIOU/view",
+      "pagina_oficial": "https://cpar.ufms.br/avaliacao-institucional/",
+      "drive_id": "1uAM_wzI309jkHC2i2hh2Lz984I4vEIOU",
+      "paginas": 145
+    }
+  ],
+  "lacunas": [
+    "2017: relatório institucional (RAAI) ausente; o relatório setorial de 2017 cobre o ano",
+    "2013: sem relatório setorial na série",
+    "2018 a 2020: relatório institucional trienal, com recorte apenas de 2020"
+  ]
+}

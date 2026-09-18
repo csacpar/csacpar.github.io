@@ -1,0 +1,119 @@
+<section class="csa-hero">
+  <div class="csa-hero-grid">
+    <div>
+      <span class="badge">{{ICO:calendario}} Autoavaliação 2014 a <span data-ano>2025</span></span>
+      <h1>Você falou,<br>o câmpus fez.</h1>
+      <p>O que estudantes, professores e técnicos do Câmpus de Paranaíba apontaram na autoavaliação, o que está bem, o que ainda precisa melhorar e o que a gestão está fazendo a respeito. Em números simples, com a fonte de cada um.</p>
+      <div class="csa-hero-acoes">
+        <a class="btn" href="ciclo.html">Ver o ciclo <span data-ano>2025</span> {{ICO:seta}}</a>
+        <a class="btn btn-ghost" href="metodo.html">Como ler estes dados</a>
+      </div>
+    </div>
+    <img class="csa-hero-capi" src="assets/mascote_capi.png" alt="" aria-hidden="true">
+  </div>
+</section>
+
+<p class="eyebrow">O que ainda precisa melhorar</p>
+<h2 class="csa-titulo">Os pontos que a comunidade avaliou abaixo de 3,50</h2>
+<p class="csa-sub">Itens de infraestrutura e serviços em <span data-ano>2025</span>, na escala de 1 a 5. Cada cartão traz a média, a classificação e o que está sendo feito.</p>
+<p class="frase" id="frase-criticos">Carregando...</p>
+<div class="cartoes" id="cartoes-criticos"></div>
+<div id="legenda-criticos"></div>
+<p class="prov">Fonte: RSA <span data-ano>2025</span>, tabela de infraestrutura pela comunidade. Série desde 2022 pelas tabelas equivalentes de cada ano. <a href="infraestrutura.html">Ver todos os 29 itens</a>.</p>
+
+<p class="eyebrow">O que está bem avaliado</p>
+<h2 class="csa-titulo">Os cinco itens com as maiores médias em <span data-ano>2025</span></h2>
+<p class="frase" id="frase-fortes">Carregando...</p>
+<div class="cartoes" id="cartoes-fortes"></div>
+<p class="prov">Fonte: RSA <span data-ano>2025</span>, tabela de infraestrutura pela comunidade. Média entre respondentes.</p>
+
+<p class="eyebrow">O que o câmpus está fazendo</p>
+<h2 class="csa-titulo" id="titulo-acoes">Ações planejadas e sua situação</h2>
+<p class="csa-sub">Acompanhamento das ações do plano do ano anterior e destaques do plano SMART <span data-ano>2025</span> da Direção.</p>
+<p class="frase" id="frase-acoes">Carregando...</p>
+<div class="grade-2">
+  <div class="card">
+    <h2>{{ICO:barras}} Situação das 27 ações</h2>
+    <div class="grafico" style="height:240px"><canvas id="graf-acoes" role="img" aria-label="Gráfico de barras com a situação das 27 ações do plano de 2024"></canvas></div>
+    <div id="tab-acoes"></div>
+    <p class="prov">Fonte: RSA <span data-ano>2025</span>, quadro de acompanhamento das ações. <a href="fragilidades.html">Ver por responsável e o plano SMART</a>.</p>
+  </div>
+  <div class="card">
+    <h2>{{ICO:ferramenta}} Destaques do plano <span data-ano>2025</span></h2>
+    <ul id="lista-destaques"><li>Carregando...</li></ul>
+    <p class="prov">Fonte: RSA <span data-ano>2025</span>, plano de ação da Direção. P1 é prioridade máxima.</p>
+  </div>
+</div>
+
+<p class="eyebrow">Sua resposta faz diferença</p>
+<h2 class="csa-titulo">Quanto mais gente responde, mais força têm os pedidos de melhoria</h2>
+<p class="frase" id="frase-adesao">Carregando...</p>
+<div class="cartoes">
+  <div class="cartao destaque"><span class="ico-topo" style="background:rgba(255,255,255,0.18);color:#fff">{{ICO:pessoas}}</span><span class="valor" id="v-adesao-disc"></span><span class="rotulo">dos estudantes responderam em <span data-ano-sem1>2025.1</span></span><span class="detalhe">A avaliação acontece pelo SIAI, duas vezes por ano. Meta da CSA: 35% de participação discente.</span></div>
+  <div class="cartao neutro"><span class="valor" id="v-adesao-1"></span><span class="rotulo">de toda a comunidade participou</span><span class="detalhe">no primeiro semestre de <span data-ano>2025</span></span></div>
+  <div class="cartao bem"><span class="valor" id="v-imagem"></span><span class="rotulo">recomendariam o câmpus</span><span class="detalhe">média dos estudantes, escala de 1 a 5, <span data-ano>2025</span></span></div>
+</div>
+<p class="prov">Fonte: RSA <span data-ano>2025</span>, tabelas de adesão e de imagem pelos estudantes e plano da CSA. <a href="adesao.html">Ver a adesão desde 2014</a>.</p>
+
+<p class="eyebrow">Explore o histórico</p>
+<h2 class="csa-titulo">Doze anos de avaliação, em seis páginas</h2>
+<div class="cartoes" style="margin-top:14px">
+  <a class="cartao neutro cartao-link" href="ciclo.html"><span class="ico-topo">{{ICO:calendario}}</span><span class="rotulo">Ciclo <span data-ano>2025</span> {{ICO:seta}}</span><span class="detalhe">Resumo do relatório mais recente: adesão, infraestrutura, imagem e ações.</span></a>
+  <a class="cartao neutro cartao-link" href="fragilidades.html"><span class="ico-topo">{{ICO:alerta}}</span><span class="rotulo">Fragilidades e ações {{ICO:seta}}</span><span class="detalhe">O que se repete de 2022 a 2025 e o que foi feito.</span></a>
+  <a class="cartao neutro cartao-link" href="infraestrutura.html"><span class="ico-topo">{{ICO:predio}}</span><span class="rotulo">Infraestrutura e imagem {{ICO:seta}}</span><span class="detalhe">Os 29 itens avaliados e a evolução dos mais críticos.</span></a>
+  <a class="cartao neutro cartao-link" href="adesao.html"><span class="ico-topo">{{ICO:pessoas}}</span><span class="rotulo">Adesão {{ICO:seta}}</span><span class="detalhe">Quem participa da avaliação, de 2014 a 2025.</span></a>
+  <a class="cartao neutro cartao-link" href="cursos.html"><span class="ico-topo">{{ICO:chapeu}}</span><span class="rotulo">Cursos {{ICO:seta}}</span><span class="detalhe">Ingressantes, ocupação, diplomação e metas até 2030.</span></a>
+  <a class="cartao neutro cartao-link" href="metodo.html"><span class="ico-topo">{{ICO:livro}}</span><span class="rotulo">Fontes e método {{ICO:seta}}</span><span class="detalhe">De onde vêm os números e onde estão os relatórios.</span></a>
+</div>
+
+<script>
+(function () {
+  function cartao(c, mostraAcao) {
+    var cl = CSA.classe(c.media);
+    var hist = "";
+    if (c.serie) {
+      hist = "2022: " + CSA.fmtNum(c.serie["2022"]) + " · 2023: " + CSA.fmtNum(c.serie["2023"]) + " · 2024: " + CSA.fmtNum(c.serie["2024"]);
+      if (c.ciclos_fragil) hist += " · fragilidade em " + c.ciclos_fragil + " de 4 ciclos";
+      else if (c.ciclos_oport) hist += " · oportunidade de melhoria em " + c.ciclos_oport + " de 4 ciclos";
+    } else { hist = "Item novo no questionário deste ano"; }
+    var acao = (mostraAcao && c.acao) ? '<span class="acao"><strong>Ação:</strong> ' + CSA.esc(c.acao) + "</span>" : "";
+    return '<div class="cartao ' + cl.id + '"><span class="valor">' + CSA.fmtNum(c.media) + "</span><span class=\"rotulo\">" + CSA.esc(c.rotulo) +
+      "</span>" + CSA.semaforo(c.media) + '<span class="detalhe">' + CSA.esc(hist) + "</span>" + acao + "</div>";
+  }
+  CSA.carregar(["sintese_atual.json"]).then(function (r) {
+    var s = r[0];
+    var cr = s.criticos, ft = s.fortes;
+    document.getElementById("cartoes-criticos").innerHTML = cr.map(function (c) { return cartao(c, true); }).join("");
+    document.getElementById("legenda-criticos").innerHTML = CSA.legendaSemaforo();
+    var pior = cr[0];
+    document.getElementById("frase-criticos").innerHTML = "<strong>" + CSA.esc(pior.rotulo) + "</strong> é o item mais crítico do câmpus: média " + CSA.fmtNum(pior.media) +
+      " em " + s.ano_ref + " e classificado como fragilidade em " + (pior.ciclos_fragil === 4 ? "todos os 4 últimos ciclos" : pior.ciclos_fragil + " dos 4 últimos ciclos") + ". " + (cr.length - 1) + " outros itens ficaram entre 2,50 e 3,49: " +
+      cr.slice(1).map(function (c) { return c.rotulo; }).join(", ") + ".";
+    document.getElementById("cartoes-fortes").innerHTML = ft.map(function (c) { return cartao(c, false); }).join("");
+    document.getElementById("frase-fortes").innerHTML = "<strong>Serviços acadêmicos e sistemas</strong> lideram: " + CSA.esc(ft[0].rotulo) + " (" + CSA.fmtNum(ft[0].media) + "), " +
+      CSA.esc(ft[1].rotulo) + " (" + CSA.fmtNum(ft[1].media) + ") e " + CSA.esc(ft[2].rotulo) + " (" + CSA.fmtNum(ft[2].media) + ").";
+
+    var a = s.acoes;
+    document.getElementById("frase-acoes").innerHTML = "Das <strong>" + a.total + " ações</strong> previstas para 2024, " + a.concluidas + " foram concluídas e " + a.em_andamento +
+      " estão em andamento: " + CSA.fmtNum(a.pct_iniciadas, 0) + "% saíram do papel. " + a.nao_iniciadas + " ainda não começaram.";
+    CSA.grafico("graf-acoes", { type: "bar",
+      data: { labels: ["Concluídas", "Em andamento", "Não iniciadas"], datasets: [{ label: "Ações", data: [a.concluidas, a.em_andamento, a.nao_iniciadas],
+        backgroundColor: [CSA.COR.bem, CSA.COR.oport, CSA.COR.frag], borderColor: [CSA.COR.bem, CSA.COR.oport, CSA.COR.frag] }] },
+      options: { indexAxis: "y", plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (i) { return " " + i.parsed.x + " de " + a.total; } } } },
+        scales: { x: { min: 0, max: a.total, ticks: { stepSize: 5 } } } } });
+    CSA.tabelaDados("tab-acoes", ["Situação", "Ações"], [["Concluídas", a.concluidas], ["Em andamento", a.em_andamento], ["Não iniciadas", a.nao_iniciadas], ["Total", a.total]]);
+    document.getElementById("lista-destaques").innerHTML = a.destaques.map(function (d) {
+      return "<li><strong>" + CSA.esc(d.tema) + ":</strong> " + CSA.esc(d.acao) + (d.prazo ? " (até " + CSA.esc(d.prazo) + ")" : "") + " <span class=\"badge badge-neutral\">" + CSA.esc(d.prioridade) + "</span></li>";
+    }).join("");
+
+    var A = s.ano_ref, ad = s.adesao_total, sem1 = A + "-1";
+    document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = A; });
+    document.querySelectorAll("[data-ano-sem1]").forEach(function (el) { el.textContent = A + ".1"; });
+    document.getElementById("v-adesao-1").textContent = CSA.fmtPct(ad.semestres[sem1]);
+    document.getElementById("v-adesao-disc").textContent = CSA.fmtPct(ad.discentes_primeiro, 1);
+    document.getElementById("v-imagem").textContent = CSA.fmtNum(s.imagem.estudantes_recomendar);
+    document.getElementById("frase-adesao").innerHTML = "Só <strong>" + CSA.fmtPct(ad.discentes_primeiro, 1) + " dos estudantes</strong> responderam em " + A + ".1. Quanto mais respostas, mais o relatório reflete o que a comunidade pensa, e mais peso têm os pedidos de melhoria.";
+    document.getElementById("titulo-acoes").textContent = a.total + " ações planejadas, " + (a.concluidas + a.em_andamento) + " já em andamento ou concluídas";
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

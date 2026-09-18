@@ -1,0 +1,71 @@
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge">{{ICO:pessoas}} Adesão</span>
+  <h1>Quem participa da autoavaliação</h1>
+  <p>Percentual da comunidade do CPAR que respondeu aos questionários, de 2014 a 2025, por segmento e por curso.</p>
+</section>
+<div class="alert alert-info"><span><span class="alert-title">Antes de olhar os gráficos</span>Em alguns anos a avaliação aconteceu uma vez; em outros, uma vez por semestre. Por isso o eixo mistura anos inteiros (2014, 2023) e semestres (2018.1, 2018.2). Os percentuais são os mesmos que aparecem nos relatórios. <span id="rupturas-resumo" class="visually-hidden"></span></span></div>
+
+<section class="card">
+  <h2>{{ICO:grafico}} Adesão por segmento (%)</h2>
+  <p class="frase" id="frase-seg">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-seg" role="img" aria-label="Gráfico de linhas da adesão total, discente, docente e técnica de 2014 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-seg"></div>
+  <div class="alert alert-warning" style="margin-top:14px"><span><span class="alert-title">Por que há espaços vazios no gráfico?</span>Porque naqueles anos o relatório não registrou o número. Em 2017 não houve tabela de participação geral. Em 2018.1 e 2019.1 só os estudantes responderam ao questionário. Preferimos deixar o espaço em branco a inventar um valor.</span></div>
+  <div id="tab-seg"></div>
+  <p><button class="btn btn-outline btn-sm" id="btn-csv">Baixar a série em CSV (ponto e vírgula, UTF-8)</button></p>
+  <p class="prov">Fonte: tabela de adesão de cada RSA, 2014 a 2025 (título e página em cada linha da tabela acima). Total só passou a ser tabulado em 2021.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:barras}} Adesão dos estudantes por curso (%)</h2>
+  <p class="frase" id="frase-cur">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-cur" role="img" aria-label="Gráfico de linhas da adesão discente por curso de 2014 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-cur"></div>
+  <div class="alert alert-warning" style="margin-top:14px"><span><span class="alert-title">Por que a linha some entre 2017 e 2020?</span>Nesses anos os relatórios informaram só a participação total dos estudantes, sem separar por curso. A Medicina Veterinária começa em 2023 porque o curso foi criado nesse ano.</span></div>
+  <div id="tab-cur"></div>
+  <p class="prov" id="prov-cur"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:pessoas}} O que aconteceu em cada ano</h2>
+  <ul id="lista-rupturas"><li>Carregando...</li></ul>
+  <p class="prov">Fonte: RSA 2014 a 2025 e RAAI 2014 a 2025 (série de rupturas mantida na base).</p>
+</section>
+
+<script>
+(function () {
+  var SEG = [["total_pct", "Total"], ["discentes_pct", "Estudantes"], ["docentes_pct", "Professores"], ["tecnicos_pct", "Técnicos"]];
+  var CUR = [["adm", "Administração"], ["mat", "Matemática"], ["psi", "Psicologia"], ["medvet", "Medicina Veterinária"]];
+  CSA.carregar(["adesao_historica.json", "adesao_por_curso.json", "rupturas.json"]).then(function (r) {
+    var ah = r[0], ac = r[1], rup = r[2].itens, pts = ah.pontos;
+    var rot = pts.map(function (p) { return p.rotulo; });
+    document.getElementById("rupturas-resumo").textContent = rup.map(function (x) { return x.ano + " (" + x.tipo.replace("_", " ") + ")"; }).join(", ") + ".";
+    document.getElementById("frase-seg").innerHTML = "<strong>Professores e técnicos respondem muito; estudantes, pouco.</strong> A adesão discente já passou de 50% (2016 e 2018.1), caiu para 17,5% na pandemia (2021.2) e ficou entre 23% e 30% nos últimos dois anos. O total do câmpus foi de 33,59% em 2025.1.";
+    var g1 = CSA.grafico("graf-seg", { type: "line", data: { labels: rot, datasets: SEG.map(function (s) { return { label: s[1], data: pts.map(function (p) { return p[s[0]]; }), spanGaps: false }; }) },
+      options: { scales: { y: { min: 0, max: 100, ticks: { callback: function (v) { return v + "%"; } } }, x: { ticks: { maxRotation: 60, font: { size: 11 } } } },
+        plugins: { tooltip: { callbacks: { title: function (i) { return "Ciclo " + i[0].label; }, label: function (i) { var p = pts[i.dataIndex]; var abs = { "Estudantes": p.discentes_abs, "Professores": p.docentes_abs, "Técnicos": p.tecnicos_abs }[i.dataset.label]; return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y) + (abs ? " (" + abs + ")" : ""); }, afterBody: function (i) { return pts[i[0].dataIndex].proveniencia; } } } } } });
+    document.getElementById("filtros-seg").innerHTML = SEG.map(function (s, i) { return '<label><input type="checkbox" data-serie="' + i + '" checked> ' + s[1] + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-seg", g1);
+    CSA.tabelaDados("tab-seg", ["Ciclo", "Total", "Estudantes", "Professores", "Técnicos", "Fonte"], pts.map(function (p) {
+      return [p.rotulo, p.total_pct === null ? null : CSA.fmtPct(p.total_pct), p.discentes_pct === null ? null : CSA.fmtPct(p.discentes_pct) + (p.discentes_abs ? " (" + p.discentes_abs + ")" : ""), p.docentes_pct === null ? null : CSA.fmtPct(p.docentes_pct), p.tecnicos_pct === null ? null : CSA.fmtPct(p.tecnicos_pct), p.proveniencia]; }), "Ver a tabela completa (19 ciclos, com fonte)");
+    document.getElementById("btn-csv").addEventListener("click", function () {
+      var l = ["ciclo;total_pct;discentes_pct;discentes_abs;docentes_pct;tecnicos_pct;proveniencia"];
+      pts.forEach(function (p) { l.push([p.rotulo, CSA.csvNum(p.total_pct), CSA.csvNum(p.discentes_pct), p.discentes_abs || "", CSA.csvNum(p.docentes_pct), CSA.csvNum(p.tecnicos_pct), '"' + (p.proveniencia || "").replace(/"/g, "'") + '"'].join(";")); });
+      CSA.baixarCSV("adesao_historica_cpar_2014_2025.csv", l);
+    });
+
+    var cp = ac.pontos, rotc = cp.map(function (p) { return p.rotulo; });
+    var val = function (p, c) { return p[c] ? (p[c].pct !== undefined ? p[c].pct : null) : null; };
+    document.getElementById("frase-cur").innerHTML = "<strong>Administração costuma ter a maior adesão</strong> (55,37% em 2023); Matemática e Psicologia alternam os menores valores, com o mínimo de 5,45% em Psicologia durante a greve de 2024.1. Medicina Veterinária entrou em 2023 e ficou entre 23% e 39%.";
+    var g2 = CSA.grafico("graf-cur", { type: "line", data: { labels: rotc, datasets: CUR.map(function (c) { return { label: c[1], data: cp.map(function (p) { return val(p, c[0]); }), spanGaps: false }; }) },
+      options: { scales: { y: { min: 0, max: 70, ticks: { callback: function (v) { return v + "%"; } } }, x: { ticks: { maxRotation: 60, font: { size: 11 } } } },
+        plugins: { tooltip: { callbacks: { title: function (i) { return "Ciclo " + i[0].label; }, label: function (i) { var p = cp[i.dataIndex]; var id = CUR.filter(function (c) { return c[1] === i.dataset.label; })[0][0]; var rec = p[id]; return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y) + (rec && rec.part !== undefined ? " (" + rec.part + " de " + rec.total + ")" : ""); }, afterBody: function (i) { return cp[i[0].dataIndex].prov || ""; } } } } } });
+    document.getElementById("filtros-cur").innerHTML = CUR.map(function (c, i) { return '<label><input type="checkbox" data-serie="' + i + '" checked> ' + c[1] + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-cur", g2);
+    CSA.tabelaDados("tab-cur", ["Ciclo"].concat(CUR.map(function (c) { return c[1]; })), cp.map(function (p) { return [p.rotulo].concat(CUR.map(function (c) { var v = val(p, c[0]); return v === null ? null : CSA.fmtPct(v); })); }), "Ver a tabela completa (19 ciclos)");
+    document.getElementById("prov-cur").textContent = "Fonte: tabela de adesão de cada RSA. " + ac.observacao;
+
+    document.getElementById("lista-rupturas").innerHTML = rup.map(function (x) { return "<li><strong>" + CSA.esc(x.ano) + ":</strong> " + CSA.esc(x.titulo) + ". <em>Efeito:</em> " + CSA.esc(x.efeito) + ".</li>"; }).join("");
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

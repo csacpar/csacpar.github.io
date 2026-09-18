@@ -1,0 +1,202 @@
+{
+  "descricao": "Valores ancora do roteiro de revisao cruzada (prototipo/REVISAO_CRUZADA.md). validar.py falha se qualquer um divergir. Caminhos em notacao arquivo:chave.chave[indice].chave",
+  "ancoras": [
+    {
+      "arquivo": "adesao_historica.json",
+      "caminho": "pontos[0].discentes_pct",
+      "esperado": 22.7,
+      "nota": "2014 discentes 99/436"
+    },
+    {
+      "arquivo": "adesao_historica.json",
+      "caminho": "pontos[0].discentes_abs",
+      "esperado": "99/436"
+    },
+    {
+      "arquivo": "infraestrutura_2022_2025.json",
+      "caminho": "itens[id=esportivos].2022",
+      "esperado": 2.77
+    },
+    {
+      "arquivo": "infraestrutura_2022_2025.json",
+      "caminho": "itens[id=esportivos].2023",
+      "esperado": 1.7
+    },
+    {
+      "arquivo": "infraestrutura_2022_2025.json",
+      "caminho": "itens[id=esportivos].2024",
+      "esperado": 1.46
+    },
+    {
+      "arquivo": "infraestrutura_2022_2025.json",
+      "caminho": "itens[id=esportivos].2025",
+      "esperado": 1.87
+    },
+    {
+      "arquivo": "infraestrutura_2022_2025.json",
+      "caminho": "len(itens)",
+      "esperado": 28
+    },
+    {
+      "arquivo": "planos_acao.json",
+      "caminho": "acompanhamento.concluidas",
+      "esperado": 11
+    },
+    {
+      "arquivo": "planos_acao.json",
+      "caminho": "acompanhamento.em_andamento",
+      "esperado": 12
+    },
+    {
+      "arquivo": "planos_acao.json",
+      "caminho": "acompanhamento.nao_iniciadas",
+      "esperado": 4
+    },
+    {
+      "arquivo": "planos_acao.json",
+      "caminho": "acompanhamento.total",
+      "esperado": 27
+    },
+    {
+      "arquivo": "ingressantes.json",
+      "caminho": "totais.total",
+      "esperado": 1323
+    },
+    {
+      "arquivo": "ingressantes.json",
+      "caminho": "anos[0].derivado",
+      "esperado": true,
+      "nota": "2017 derivado por subtracao exata"
+    },
+    {
+      "arquivo": "dip_evadidos.json",
+      "caminho": "balanco.sucesso_global",
+      "esperado": 34.62
+    },
+    {
+      "arquivo": "dip_evadidos.json",
+      "caminho": "diplomados.total",
+      "esperado": 458
+    },
+    {
+      "arquivo": "dip_evadidos.json",
+      "caminho": "evadidos.total",
+      "esperado": 577
+    },
+    {
+      "arquivo": "perfil2025.json",
+      "caminho": "cursos[id=mat].ocup",
+      "esperado": 33.13
+    },
+    {
+      "arquivo": "perfil2025.json",
+      "caminho": "cursos[id=medvet].ocup",
+      "esperado": 95.83
+    },
+    {
+      "arquivo": "perfil2025.json",
+      "caminho": "total",
+      "esperado": 519
+    },
+    {
+      "arquivo": "imagem_2022_2025.json",
+      "caminho": "estudantes[0].q1",
+      "esperado": 4.77
+    },
+    {
+      "arquivo": "imagem_2022_2025.json",
+      "caminho": "servidores[3].q1",
+      "esperado": 4.6
+    },
+    {
+      "arquivo": "fragilidades_recorrentes.json",
+      "caminho": "recorrentes_2022_2025[0].ciclos_fragil",
+      "esperado": 4,
+      "nota": "esportivos 4 de 4 conforme classificação dos relatórios"
+    },
+    {
+      "arquivo": "fragilidades_recorrentes.json",
+      "caminho": "len(recorrentes_2022_2025)",
+      "esperado": 11
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "adesao.2025-1.segmentos.total",
+      "esperado": 33.59
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "adesao.2025-2.segmentos.total",
+      "esperado": 29.54
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "adesao.2025-1.segmentos.docentes",
+      "esperado": 93.8
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "adesao.2025-1.cursos.mat",
+      "esperado": 16.98
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "len(infraestrutura.itens)",
+      "esperado": 29
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "infraestrutura.itens[id=esportivos].media",
+      "esperado": 1.87
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "infraestrutura.itens[id=secretaria_qualidade].media",
+      "esperado": 4.89
+    },
+    {
+      "arquivo": "ciclo_2025.json",
+      "caminho": "imagem.estudantes.recomendar_q1",
+      "esperado": 4.64
+    },
+    {
+      "arquivo": "sintese_2025.json",
+      "caminho": "criticos[0].id",
+      "esperado": "esportivos"
+    },
+    {
+      "arquivo": "sintese_2025.json",
+      "caminho": "fortes[0].media",
+      "esperado": 4.89
+    },
+    {
+      "arquivo": "indice.json",
+      "caminho": "len(rsa_cpar)",
+      "esperado": 12
+    },
+    {
+      "arquivo": "indice.json",
+      "caminho": "len(raai_ufms)",
+      "esperado": 11,
+      "nota": "2017 lacuna RAAI"
+    }
+  ],
+  "textos_na_base": [
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "Esportivos 1,87"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "total 33,59"
+    },
+    {
+      "arquivo": "RSA_2023_CPAR.md",
+      "contem": "total 258 de 530 (48,67)"
+    },
+    {
+      "arquivo": "Relatorio_Consolidado_Indicadores_CPAR.md",
+      "contem": "1.323"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge">{{ICO:livro}} Fontes e método</span>
+  <h1>De onde vêm estes números</h1>
+  <p>Tudo o que está neste site foi publicado nos Relatórios de Autoavaliação Setorial do CPAR, disponíveis na página de Avaliação Institucional do câmpus.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:check}} Como os dados são produzidos</h2>
+  <p>A cada ano, a Comissão Setorial de Avaliação (CSA) aplica questionários à comunidade pelo SIAI, o sistema de avaliação da UFMS, e publica os resultados no Relatório de Autoavaliação Setorial, aprovado pelo Conselho de Câmpus. Os números deste site são extraídos desses relatórios, sem recálculo nem estimativa: quando um relatório não traz o dado, aparece "sem dado". Cada gráfico indica a tabela e a página de origem.</p>
+  <p>Os relatórios completos, de 2012 a 2025, estão em <a href="https://cpar.ufms.br/avaliacao-institucional/" rel="noopener">cpar.ufms.br/avaliacao-institucional</a>.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:alerta}} Como ler o semáforo</h2>
+  <p>As médias vêm de questionários com escala de 1 (Discordo totalmente) a 5 (Concordo totalmente). Respostas "Não se aplica", "Não sei responder" e "Não quero responder" não entram na média.</p>
+  <div id="legenda-sem"></div>
+  <p class="nota" style="margin-top:10px">Os relatórios classificam cada item pela distribuição das respostas (1 e 2 = fragilidade; 3 = oportunidade de melhoria; 4 e 5 = bem avaliado). O semáforo deste site aplica cortes sobre a média (2,50 e 3,50) e pode divergir do relatório em casos limítrofes: em 2022, por exemplo, espaços esportivos tiveram média 2,77 e foram classificados como fragilidade. Uma média de 3,49 e outra de 3,51 caem em faixas distintas, mas descrevem situações quase iguais; leia a faixa junto com a série histórica.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:calendario}} Relatórios da série 2014 a 2025</h2>
+  <p class="frase"><strong>Doze relatórios setoriais</strong> em doze anos. Clique no ano para abrir o relatório original.</p>
+  <div class="tabela-rolagem">
+    <table class="table-dados" id="tab-rsa"><thead><tr><th scope="col">Ano</th><th scope="col">Relatório</th></tr></thead><tbody><tr><td colspan="2">Carregando...</td></tr></tbody></table>
+  </div>
+  <p class="nota">Os relatórios de 2023 a 2025 abrem no Google Drive institucional, como publicados na página do câmpus.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:lupa}} Lacunas e rupturas que o site declara</h2>
+  <ul id="lista-lacunas"><li>Carregando...</li></ul>
+  <p class="nota">Rupturas que impedem ler os anos como uma tendência contínua: questionário diferente antes de 2022, ensino remoto em 2020 e 2021, greve em 2024, entrada da Medicina Veterinária em 2023 e novo modelo de relatório em 2025.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:livro}} Base institucional</h2>
+  <p>A CSA/CPAR atua conforme a Resolução COUN nº 104/2021 (Regulamento da CPA/UFMS), o Plano de Avaliação Institucional 2024 a 2026 da CPA/UFMS e a Lei nº 10.861/2004 (SINAES). As ações de melhoria vinculam-se ao PDU 2025 a 2030 do CPAR e ao PDI/PPI 2025 a 2030 da UFMS.</p>
+  <p class="nota">Encontrou um erro ou quer sugerir algo? Procure a CSA pela Direção do Câmpus ou registre uma sugestão no repositório público do site em <a href="https://github.com/csacpar" rel="noopener">github.com/csacpar</a>.</p>
+</section>
+
+<script>
+(function () {
+  document.getElementById("legenda-sem").innerHTML = CSA.legendaSemaforo();
+  CSA.carregar(["indice.json"]).then(function (r) {
+    var idx = r[0];
+    document.querySelector("#tab-rsa tbody").innerHTML = idx.rsa_cpar.map(function (d) {
+      var ano = d.url_publica ? '<a href="' + CSA.esc(d.url_publica) + '" rel="noopener">' + d.ano_ref + "</a>" : String(d.ano_ref);
+      var nome = "Relatório de Autoavaliação Setorial " + d.ano_ref + (d.url_publica ? ' (<a href="' + CSA.esc(d.url_publica) + '" rel="noopener">abrir</a>)' : "");
+      return "<tr><th scope=\"row\">" + ano + "</th><td style=\"text-align:left\">" + nome + (d.paginas ? " · " + d.paginas + " páginas" : "") + "</td></tr>";
+    }).join("");
+    CSA.linksExternos(document.getElementById("tab-rsa"));
+    document.getElementById("lista-lacunas").innerHTML = idx.lacunas.map(function (l) { return "<li>" + CSA.esc(l) + "</li>"; }).join("") +
+      "<li>2017: sem tabela de adesão geral; 2018.1 e 2019.1: só estudantes foram consultados; 2018 a 2020: adesão sem recorte por curso.</li>";
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

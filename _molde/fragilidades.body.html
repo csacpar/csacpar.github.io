@@ -1,0 +1,114 @@
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge">{{ICO:alerta}} Fragilidades e ações</span>
+  <h1>Fragilidades recorrentes e ações</h1>
+  <p>O que a comunidade apontou repetidamente de 2022 a 2025, no mesmo questionário do SIAI, e o que a gestão fez a respeito.</p>
+</section>
+<div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Um problema que aparece três anos seguidos pesa mais do que uma queda em um ano só. Comparamos apenas 2022 a 2025, porque desde 2022 o questionário é o mesmo; antes disso as perguntas eram outras e os resultados aparecem só como memória. A contagem de anos em fragilidade é a que cada relatório fez.</span></div>
+
+<section class="card">
+  <h2>{{ICO:grafico}} Quantos ciclos cada tema ficou em fragilidade</h2>
+  <p class="frase" id="frase-rec">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-rec" role="img" aria-label="Gráfico de barras com o número de ciclos em fragilidade por tema, 2022 a 2025"></canvas></div>
+  <div id="legenda-rec"></div>
+  <div id="tab-rec"></div>
+  <p><button class="btn btn-outline btn-sm" id="btn-csv-rec">Baixar em CSV (ponto e vírgula, UTF-8)</button></p>
+  <p class="prov" id="prov-rec"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:barras}} Evolução dos temas mais críticos (média de 1 a 5)</h2>
+  <p class="frase" id="frase-evo">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-evo" role="img" aria-label="Gráfico de linhas das médias dos temas mais críticos de 2022 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-evo"></div>
+  <div id="tab-evo"></div>
+  <p class="nota">Linhas tracejadas em 2,50 e 3,50 marcam os limites das faixas. Filtros ocultam séries sem alterar os dados.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:pessoas}} O que foi feito: 27 ações do plano de 2024</h2>
+  <p class="frase" id="frase-exec">Carregando...</p>
+  <div class="grade-2">
+    <div>
+      <div class="grafico"><canvas id="graf-exec" role="img" aria-label="Gráfico de rosca da situação das 27 ações"></canvas></div>
+      <div id="tab-exec"></div>
+    </div>
+    <div>
+      <div class="grafico"><canvas id="graf-resp" role="img" aria-label="Gráfico de barras empilhadas das ações por responsável"></canvas></div>
+      <div id="tab-resp"></div>
+    </div>
+  </div>
+  <p class="nota" id="obs-resp"></p>
+  <p class="prov">Fonte: RSA 2025, Quadro 2. O modelo de 2024 não trazia prazos; o de 2025 é SMART, com responsável, prazo, prioridade e vínculo ao PDU 2025 a 2030 e ao PDI/PPI.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:predio}} Plano SMART 2025 por responsável</h2>
+  <div id="smart"></div>
+  <p class="prov">Fonte: RSA 2025, Quadros 1, 3, 5, 6, 7 e 8.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:check}} Situação em 2024 e memória de 2014 a 2023</h2>
+  <ul>
+    <li><strong>2024 (Quadro 2):</strong> <span id="sit-2024"></span></li>
+    <li><strong>Recomendações do relatório 2025:</strong> <span id="recs"></span></li>
+    <li><strong>Memória:</strong> <span id="memoria"></span></li>
+  </ul>
+  <p class="prov">Fonte: RSA 2024, Quadros 2 a 4; RSA 2025, Quadro 2; RSA 2022 e 2023, Quadros 2, 4, 5, 7 e 9 a 11; RSA 2014 a 2021, balanços críticos.</p>
+</section>
+
+<script>
+(function () {
+  var ANOS = ["2022", "2023", "2024", "2025"];
+  CSA.carregar(["fragilidades_recorrentes.json", "planos_acao.json"]).then(function (r) {
+    var frag = r[0], pl = r[1];
+    var temas = frag.recorrentes_2022_2025.slice();
+    temas.forEach(function (t) { t.cf = t.ciclos_fragil || 0; t.co = t.ciclos_oport || 0; });
+    temas.sort(function (a, b) { return (b.cf - a.cf) || (b.co - a.co) || (a["2025"] - b["2025"]); });
+    var comFrag = temas.filter(function (t) { return t.cf > 0; });
+    document.getElementById("frase-rec").innerHTML = "<strong>" + CSA.esc(temas[0].tema) + "</strong> ficou em fragilidade em " + temas[0].cf + " dos 4 ciclos; " +
+      comFrag.slice(1).map(function (t) { return t.tema.toLowerCase() + " em " + t.cf; }).join(", ") + ". Os demais temas oscilaram entre oportunidade de melhoria e bem avaliado.";
+    CSA.grafico("graf-rec", { type: "bar", data: { labels: temas.map(function (t) { return t.tema; }), datasets: [
+      { label: "Ciclos em fragilidade", data: temas.map(function (t) { return t.cf; }), cor: CSA.COR.frag },
+      { label: "Ciclos em oportunidade", data: temas.map(function (t) { return t.co; }), cor: CSA.COR.oport }] },
+      options: { indexAxis: "y", scales: { x: { stacked: true, min: 0, max: 4, ticks: { stepSize: 1 } }, y: { stacked: true, ticks: { autoSkip: false } } },
+        plugins: { tooltip: { callbacks: { afterBody: function (i) { var t = temas[i[0].dataIndex]; return ANOS.map(function (a) { return a + ": " + CSA.fmtNum(t[a]); }).join(" · ") + "\n" + t.status; } } } } } });
+    document.getElementById("legenda-rec").innerHTML = CSA.legendaSemaforo();
+    CSA.tabelaDados("tab-rec", ["Tema", "2022", "2023", "2024", "2025", "Ciclos em fragilidade", "Situação e ação vinculada"], temas.map(function (t) {
+      return [t.tema, CSA.fmtNum(t["2022"]), CSA.fmtNum(t["2023"]), CSA.fmtNum(t["2024"]), CSA.fmtNum(t["2025"]), t.cf + " de 4", t.status]; }), "Ver a tabela completa (11 temas)");
+    document.getElementById("btn-csv-rec").addEventListener("click", function () {
+      var l = ["tema;2022;2023;2024;2025;ciclos_fragilidade;ciclos_oportunidade;situacao;proveniencia"];
+      temas.forEach(function (t) { l.push([t.tema, CSA.csvNum(t["2022"]), CSA.csvNum(t["2023"]), CSA.csvNum(t["2024"]), CSA.csvNum(t["2025"]), t.cf, t.co, '"' + (t.status || "").replace(/"/g, "'") + '"', '"' + (t.prov || "").replace(/"/g, "'") + '"'].join(";")); });
+      CSA.baixarCSV("fragilidades_recorrentes_cpar_2022_2025.csv", l);
+    });
+    document.getElementById("prov-rec").textContent = "Fonte: " + frag.nota_metodo;
+
+    var evo = temas.slice(0, 6);
+    document.getElementById("frase-evo").innerHTML = "Depois da queda geral de 2022 para 2023, <strong>a maioria dos temas críticos voltou a subir em 2025</strong>. Transporte saiu de 2,91 para 3,88 e convivência voltou à faixa bem avaliada; espaços esportivos e alimentação continuam abaixo de 3,00.";
+    var g = CSA.grafico("graf-evo", { type: "line", data: { labels: ANOS, datasets: evo.map(function (t) { return { label: t.tema, data: ANOS.map(function (a) { return t[a]; }), spanGaps: true }; }) },
+      options: { scales: { y: { min: 1, max: 5, ticks: { stepSize: 0.5 } } }, plugins: { cortesCPA: { eixo: "y" },
+        tooltip: { callbacks: { label: function (i) { return " " + i.dataset.label + ": " + CSA.fmtNum(i.parsed.y) + " (" + CSA.classe(i.parsed.y).rotulo + ")"; } } } } } });
+    document.getElementById("filtros-evo").innerHTML = evo.map(function (t, i) { return '<label><input type="checkbox" data-serie="' + i + '" ' + (i < 4 ? "checked" : "") + "> " + CSA.esc(t.tema) + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-evo", g);
+    CSA.tabelaDados("tab-evo", ["Tema"].concat(ANOS), evo.map(function (t) { return [t.tema].concat(ANOS.map(function (a) { return CSA.fmtNum(t[a]); })); }));
+
+    var ac = pl.acompanhamento, rs = ac.por_responsavel;
+    document.getElementById("frase-exec").innerHTML = "<strong>" + CSA.fmtNum(ac.pct_iniciadas, 0) + "% das ações saíram do papel</strong>: " + ac.concluidas + " concluídas e " + ac.em_andamento + " em andamento, de " + ac.total + ". As " + ac.nao_iniciadas + " não iniciadas estão com a Direção e a Medicina Veterinária.";
+    CSA.grafico("graf-exec", { type: "doughnut", data: { labels: ["Concluídas", "Em andamento", "Não iniciadas"], datasets: [{ data: [ac.concluidas, ac.em_andamento, ac.nao_iniciadas],
+      backgroundColor: [CSA.COR.bem, CSA.COR.oport, CSA.COR.frag], borderColor: "#fff", borderWidth: 2 }] }, options: { interaction: { mode: "nearest", intersect: true }, cutout: "60%" } });
+    CSA.tabelaDados("tab-exec", ["Situação", "Ações"], [["Concluídas", ac.concluidas], ["Em andamento", ac.em_andamento], ["Não iniciadas", ac.nao_iniciadas], ["Total", ac.total]]);
+    CSA.grafico("graf-resp", { type: "bar", data: { labels: rs.map(function (x) { return x.resp; }), datasets: [
+      { label: "Concluídas", data: rs.map(function (x) { return x.conc; }), cor: CSA.COR.bem },
+      { label: "Em andamento", data: rs.map(function (x) { return x.and; }), cor: CSA.COR.oport },
+      { label: "Não iniciadas", data: rs.map(function (x) { return x.nao; }), cor: CSA.COR.frag }] },
+      options: { indexAxis: "y", scales: { x: { stacked: true, ticks: { stepSize: 1 } }, y: { stacked: true } } } });
+    CSA.tabelaDados("tab-resp", ["Responsável", "Concluídas", "Em andamento", "Não iniciadas", "Total"], rs.map(function (x) { return [x.resp, x.conc, x.and, x.nao, x.total]; }));
+    document.getElementById("obs-resp").textContent = "A CSA não tinha ações formais em 2024 (lacuna apontada no relatório) e passou a ter quatro ações SMART em 2025. A Medicina Veterinária não tinha quadro anterior. Transporte não tem registro formal no Quadro 2.";
+    document.getElementById("smart").innerHTML = pl.smart_atual.map(function (gr) {
+      return '<details class="tabela-dados"><summary>' + CSA.esc(gr.resp) + " (" + gr.acoes.length + " ações)</summary><ul>" + gr.acoes.map(function (a) { return "<li>" + CSA.esc(a) + "</li>"; }).join("") + "</ul></details>"; }).join("");
+    document.getElementById("sit-2024").textContent = pl.situacao_2024_quadros_2_4;
+    document.getElementById("recs").textContent = pl.recomendacoes_quadro2.join("; ") + ".";
+    document.getElementById("memoria").textContent = pl.memoria_2014_2023;
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

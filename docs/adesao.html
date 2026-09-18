@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adesão à autoavaliação | Autoavaliação CPAR/UFMS</title>
+<meta name="description" content="Participação da comunidade do CPAR/UFMS na autoavaliação desde 2014, por segmento e por curso, com marcos e lacunas.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0088B7">
+<link rel="icon" href="assets/logos/ufms_logo_positivo_vazado.png" type="image/png">
+<script>
+/* Tema antes do CSS, para evitar piscar: escolha salva ou preferência do sistema. */
+(function(){var t=null;try{t=localStorage.getItem("csa-tema")}catch(e){}
+if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";
+if(t==="dark")document.documentElement.setAttribute("data-theme","dark");})();
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>if (typeof Chart === "undefined") document.write('<script src="js/vendor/chart.umd.min.js"><\/script>');</script>
+<script src="assets/chart-defaults.js"></script>
+<script src="js/site.js"></script>
+</head>
+<body data-pagina="adesao">
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<header class="csa-header">
+  <div class="csa-header-inner">
+    <a class="csa-brand" href="index.html">
+      <img src="assets/logos/ufms_logo_positivo_vazado.png" alt="UFMS">
+      <span class="csa-brand-text"><strong>Autoavaliação CPAR</strong><span>Comissão Setorial de Avaliação, Câmpus de Paranaíba</span></span>
+    </a>
+    <div class="csa-header-acoes">
+      <button class="csa-tema" type="button" aria-pressed="false" title="Mudar para tema escuro">
+        <span class="visually-hidden">Alternar tema claro ou escuro</span>
+        <svg class="ico ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="ico ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="csa-nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menu
+      </button>
+    </div>
+    <nav class="csa-nav" id="menu" aria-label="Principal">
+      <a href="index.html" data-pagina="inicio">Início</a>
+      <a href="ciclo.html" data-pagina="ciclo">Ciclo atual</a>
+      <a href="fragilidades.html" data-pagina="fragilidades">Fragilidades e ações</a>
+      <a href="infraestrutura.html" data-pagina="infraestrutura">Infraestrutura</a>
+      <a href="adesao.html" data-pagina="adesao">Adesão</a>
+      <a href="cursos.html" data-pagina="cursos">Cursos</a>
+      <a href="metodo.html" data-pagina="metodo">Fontes</a>
+    </nav>
+  </div>
+</header>
+<main class="csa-main" id="conteudo">
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg> Adesão</span>
+  <h1>Quem participa da autoavaliação</h1>
+  <p>Percentual da comunidade do CPAR que respondeu aos questionários, de 2014 a 2025, por segmento e por curso.</p>
+</section>
+<div class="alert alert-info"><span><span class="alert-title">Antes de olhar os gráficos</span>Em alguns anos a avaliação aconteceu uma vez; em outros, uma vez por semestre. Por isso o eixo mistura anos inteiros (2014, 2023) e semestres (2018.1, 2018.2). Os percentuais são os mesmos que aparecem nos relatórios. <span id="rupturas-resumo" class="visually-hidden"></span></span></div>
+
+<section class="card">
+  <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg> Adesão por segmento (%)</h2>
+  <p class="frase" id="frase-seg">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-seg" role="img" aria-label="Gráfico de linhas da adesão total, discente, docente e técnica de 2014 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-seg"></div>
+  <div class="alert alert-warning" style="margin-top:14px"><span><span class="alert-title">Por que há espaços vazios no gráfico?</span>Porque naqueles anos o relatório não registrou o número. Em 2017 não houve tabela de participação geral. Em 2018.1 e 2019.1 só os estudantes responderam ao questionário. Preferimos deixar o espaço em branco a inventar um valor.</span></div>
+  <div id="tab-seg"></div>
+  <p><button class="btn btn-outline btn-sm" id="btn-csv">Baixar a série em CSV (ponto e vírgula, UTF-8)</button></p>
+  <p class="prov">Fonte: tabela de adesão de cada RSA, 2014 a 2025 (título e página em cada linha da tabela acima). Total só passou a ser tabulado em 2021.</p>
+</section>
+
+<section class="card">
+  <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> Adesão dos estudantes por curso (%)</h2>
+  <p class="frase" id="frase-cur">Carregando...</p>
+  <div class="grafico alto"><canvas id="graf-cur" role="img" aria-label="Gráfico de linhas da adesão discente por curso de 2014 a 2025"></canvas></div>
+  <div class="filtros" id="filtros-cur"></div>
+  <div class="alert alert-warning" style="margin-top:14px"><span><span class="alert-title">Por que a linha some entre 2017 e 2020?</span>Nesses anos os relatórios informaram só a participação total dos estudantes, sem separar por curso. A Medicina Veterinária começa em 2023 porque o curso foi criado nesse ano.</span></div>
+  <div id="tab-cur"></div>
+  <p class="prov" id="prov-cur"></p>
+</section>
+
+<section class="card">
+  <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg> O que aconteceu em cada ano</h2>
+  <ul id="lista-rupturas"><li>Carregando...</li></ul>
+  <p class="prov">Fonte: RSA 2014 a 2025 e RAAI 2014 a 2025 (série de rupturas mantida na base).</p>
+</section>
+
+<script>
+(function () {
+  var SEG = [["total_pct", "Total"], ["discentes_pct", "Estudantes"], ["docentes_pct", "Professores"], ["tecnicos_pct", "Técnicos"]];
+  var CUR = [["adm", "Administração"], ["mat", "Matemática"], ["psi", "Psicologia"], ["medvet", "Medicina Veterinária"]];
+  CSA.carregar(["adesao_historica.json", "adesao_por_curso.json", "rupturas.json"]).then(function (r) {
+    var ah = r[0], ac = r[1], rup = r[2].itens, pts = ah.pontos;
+    var rot = pts.map(function (p) { return p.rotulo; });
+    document.getElementById("rupturas-resumo").textContent = rup.map(function (x) { return x.ano + " (" + x.tipo.replace("_", " ") + ")"; }).join(", ") + ".";
+    document.getElementById("frase-seg").innerHTML = "<strong>Professores e técnicos respondem muito; estudantes, pouco.</strong> A adesão discente já passou de 50% (2016 e 2018.1), caiu para 17,5% na pandemia (2021.2) e ficou entre 23% e 30% nos últimos dois anos. O total do câmpus foi de 33,59% em 2025.1.";
+    var g1 = CSA.grafico("graf-seg", { type: "line", data: { labels: rot, datasets: SEG.map(function (s) { return { label: s[1], data: pts.map(function (p) { return p[s[0]]; }), spanGaps: false }; }) },
+      options: { scales: { y: { min: 0, max: 100, ticks: { callback: function (v) { return v + "%"; } } }, x: { ticks: { maxRotation: 60, font: { size: 11 } } } },
+        plugins: { tooltip: { callbacks: { title: function (i) { return "Ciclo " + i[0].label; }, label: function (i) { var p = pts[i.dataIndex]; var abs = { "Estudantes": p.discentes_abs, "Professores": p.docentes_abs, "Técnicos": p.tecnicos_abs }[i.dataset.label]; return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y) + (abs ? " (" + abs + ")" : ""); }, afterBody: function (i) { return pts[i[0].dataIndex].proveniencia; } } } } } });
+    document.getElementById("filtros-seg").innerHTML = SEG.map(function (s, i) { return '<label><input type="checkbox" data-serie="' + i + '" checked> ' + s[1] + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-seg", g1);
+    CSA.tabelaDados("tab-seg", ["Ciclo", "Total", "Estudantes", "Professores", "Técnicos", "Fonte"], pts.map(function (p) {
+      return [p.rotulo, p.total_pct === null ? null : CSA.fmtPct(p.total_pct), p.discentes_pct === null ? null : CSA.fmtPct(p.discentes_pct) + (p.discentes_abs ? " (" + p.discentes_abs + ")" : ""), p.docentes_pct === null ? null : CSA.fmtPct(p.docentes_pct), p.tecnicos_pct === null ? null : CSA.fmtPct(p.tecnicos_pct), p.proveniencia]; }), "Ver a tabela completa (19 ciclos, com fonte)");
+    document.getElementById("btn-csv").addEventListener("click", function () {
+      var l = ["ciclo;total_pct;discentes_pct;discentes_abs;docentes_pct;tecnicos_pct;proveniencia"];
+      pts.forEach(function (p) { l.push([p.rotulo, CSA.csvNum(p.total_pct), CSA.csvNum(p.discentes_pct), p.discentes_abs || "", CSA.csvNum(p.docentes_pct), CSA.csvNum(p.tecnicos_pct), '"' + (p.proveniencia || "").replace(/"/g, "'") + '"'].join(";")); });
+      CSA.baixarCSV("adesao_historica_cpar_2014_2025.csv", l);
+    });
+
+    var cp = ac.pontos, rotc = cp.map(function (p) { return p.rotulo; });
+    var val = function (p, c) { return p[c] ? (p[c].pct !== undefined ? p[c].pct : null) : null; };
+    document.getElementById("frase-cur").innerHTML = "<strong>Administração costuma ter a maior adesão</strong> (55,37% em 2023); Matemática e Psicologia alternam os menores valores, com o mínimo de 5,45% em Psicologia durante a greve de 2024.1. Medicina Veterinária entrou em 2023 e ficou entre 23% e 39%.";
+    var g2 = CSA.grafico("graf-cur", { type: "line", data: { labels: rotc, datasets: CUR.map(function (c) { return { label: c[1], data: cp.map(function (p) { return val(p, c[0]); }), spanGaps: false }; }) },
+      options: { scales: { y: { min: 0, max: 70, ticks: { callback: function (v) { return v + "%"; } } }, x: { ticks: { maxRotation: 60, font: { size: 11 } } } },
+        plugins: { tooltip: { callbacks: { title: function (i) { return "Ciclo " + i[0].label; }, label: function (i) { var p = cp[i.dataIndex]; var id = CUR.filter(function (c) { return c[1] === i.dataset.label; })[0][0]; var rec = p[id]; return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y) + (rec && rec.part !== undefined ? " (" + rec.part + " de " + rec.total + ")" : ""); }, afterBody: function (i) { return cp[i[0].dataIndex].prov || ""; } } } } } });
+    document.getElementById("filtros-cur").innerHTML = CUR.map(function (c, i) { return '<label><input type="checkbox" data-serie="' + i + '" checked> ' + c[1] + "</label>"; }).join("");
+    CSA.ligaFiltros("filtros-cur", g2);
+    CSA.tabelaDados("tab-cur", ["Ciclo"].concat(CUR.map(function (c) { return c[1]; })), cp.map(function (p) { return [p.rotulo].concat(CUR.map(function (c) { var v = val(p, c[0]); return v === null ? null : CSA.fmtPct(v); })); }), "Ver a tabela completa (19 ciclos)");
+    document.getElementById("prov-cur").textContent = "Fonte: tabela de adesão de cada RSA. " + ac.observacao;
+
+    document.getElementById("lista-rupturas").innerHTML = rup.map(function (x) { return "<li><strong>" + CSA.esc(x.ano) + ":</strong> " + CSA.esc(x.titulo) + ". <em>Efeito:</em> " + CSA.esc(x.efeito) + ".</li>"; }).join("");
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>
+</main>
+<footer class="csa-footer">
+  <div class="csa-footer-inner">
+    <div>
+      <img src="assets/logos/ufms_assinatura_horizontal_negativo.png" alt="Universidade Federal de Mato Grosso do Sul">
+      <p>Comissão Setorial de Avaliação do Câmpus de Paranaíba (CSA/CPAR/UFMS). Resultados dos Relatórios de Autoavaliação Setorial 2014 a 2025, no âmbito do SINAES (Lei nº 10.861/2004) e da CPA/UFMS.</p>
+      <p class="nota">Dados e textos sob licença CC BY 4.0. Código sob licença MIT. Base de dados somente leitura; lacunas declaradas, sem estimativas.</p>
+    </div>
+    <div>
+      <h4>Navegar</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ciclo.html">Ciclo atual</a></li>
+        <li><a href="fragilidades.html">Fragilidades e ações</a></li>
+        <li><a href="infraestrutura.html">Infraestrutura e imagem</a></li>
+        <li><a href="adesao.html">Adesão</a></li>
+        <li><a href="cursos.html">Cursos</a></li>
+        <li><a href="metodo.html">Fontes e método</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="https://cpar.ufms.br" rel="noopener">Câmpus de Paranaíba</a></li>
+        <li><a href="https://seavi.ufms.br" rel="noopener">CPA/UFMS (SEAVI)</a></li>
+        <li><a href="https://siai.ufms.br" rel="noopener">SIAI (sistema de avaliação)</a></li>
+        <li><a href="https://www.ufms.br" rel="noopener">UFMS</a></li>
+      </ul>
+      <p class="nota">Inovadora · Sustentável · Humana</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

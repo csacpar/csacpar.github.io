@@ -1,0 +1,191 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "dados/curados/planos_acao.json",
+    "sha256_origem": "fe799216f0d34fdbd8e32d5d31158968bb617e92f72f00ee46bcba636cc4e9b3",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "curado",
+    "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"
+  },
+  "serie": "Planos de ação — acompanhamento (Quadro 2, 2025) + SMART 2025 (Quadros 1,3,5-8) + 2024 (Quadros 2-4)",
+  "nota_metodo": "Quadro 2 (2025) acompanha 27 ações do modelo 2024 (sem prazos): 11 concluidas, 12 em andamento, 4 não iniciadas (85% iniciadas). Modelo 2025 SMART com responsável, prazo, prioridade e vínculo PDU/PDI-PPI. Sem nomes em feedback negativo.",
+  "acompanhamento": {
+    "total": 27,
+    "concluidas": 11,
+    "em_andamento": 12,
+    "nao_iniciadas": 4,
+    "pct_iniciadas": 85.0,
+    "por_responsavel": [
+      {
+        "resp": "Direção",
+        "total": 11,
+        "conc": 1,
+        "and": 8,
+        "nao": 2,
+        "obs": "Egressos realizada (SECAC/COAC 2025); esporte P1 até 2o sem/2026; alimentação P2; internet/clima P2; retencao P1; Vet Bloco 4 P1; comunicação P2. Transporte sem registro."
+      },
+      {
+        "resp": "Administração",
+        "total": 3,
+        "conc": 2,
+        "and": 1,
+        "nao": 0,
+        "obs": "Modelo 2024 sem prazos."
+      },
+      {
+        "resp": "Matemática",
+        "total": 4,
+        "conc": 3,
+        "and": 1,
+        "nao": 0,
+        "obs": "Modelo 2024 sem prazos."
+      },
+      {
+        "resp": "Psicologia",
+        "total": 4,
+        "conc": 3,
+        "and": 1,
+        "nao": 0,
+        "obs": "Modelo 2024 sem prazos."
+      },
+      {
+        "resp": "Medicina Veterinária",
+        "total": 5,
+        "conc": 2,
+        "and": 1,
+        "nao": 2,
+        "obs": "Sem quadro formal anterior."
+      },
+      {
+        "resp": "CSA",
+        "total": 0,
+        "conc": 0,
+        "and": 0,
+        "nao": 0,
+        "obs": "Lacuna como fragilidade em 2024; sanada com Quadro 1 (4 ações SMART) em 2025."
+      }
+    ],
+    "prov": "FONTE_RSA_2025 Quadro 2"
+  },
+  "smart_atual": [
+    {
+      "resp": "CSA (Quadro 1)",
+      "acoes": [
+        "Adesão discente 1a etapa, meta 35%, P2, mar-out/2026",
+        "Adesão em disciplinas, meta 35%, P2, out-nov/2026",
+        "Dados de coordenadores na 2a etapa, P3, até out/2026, SEI com CPA/DIAVI",
+        "Informe sintético semestral de devolutiva, P2, fev e ago/2026"
+      ]
+    },
+    {
+      "resp": "Direção (Quadro 3)",
+      "acoes": [
+        "Esporte P1 até 2o sem/2026 meta 3,0",
+        "Alimentação P2 projeto até jun/2025 + provisória até ago/2025",
+        "Internet/clima P2 parecer até mar/2025",
+        "Retenção/evasão P1 monitoria + SISCAD",
+        "Veterinária P1 Bloco 4 + clínica",
+        "Comunicação P2 SIAI + ouvidoria itinerante"
+      ]
+    },
+    {
+      "resp": "Administração (Quadro 5)",
+      "acoes": [
+        "Participação 26,67 P2",
+        "Documentos P1 concluido",
+        "Vivência P2",
+        "Extraclasse P2",
+        "Retenção P1",
+        "Pesquisa/MBA P3"
+      ]
+    },
+    {
+      "resp": "Matemática (Quadro 6)",
+      "acoes": [
+        "SIAI P1",
+        "Representação P1",
+        "Engajamento/evasão 14,73 P1 executado",
+        "Didática P2",
+        "Comunicação P1",
+        "Sanitárias/aulas/internet P2"
+      ]
+    },
+    {
+      "resp": "Medicina Veterinária (Quadro 7)",
+      "acoes": [
+        "Laboratórios P1",
+        "Internet P1 executado",
+        "Engajamento P1",
+        "Didática P2",
+        "TICs P2",
+        "Acervo P2"
+      ]
+    },
+    {
+      "resp": "Psicologia (Quadro 8)",
+      "acoes": [
+        "Serviço-escola P1",
+        "Internet P2",
+        "EAD/AVA P1",
+        "Contribuição P2",
+        "TEA P1",
+        "Extraclasse/NDE P2"
+      ]
+    }
+  ],
+  "situacao_2024_quadros_2_4": "Quadro 2: egressos realizada 2025; esportivos em execução até 2o sem/2025; alimentação em andamento 2025-2026; transporte contínuo; capacitação TAEs encaminhada 2025. Quadro 3: acompanhamento 2023 com situação em 2024. Quadro 4: 85 respostas (quadra 54/63,5; RU 41/48,2; iluminação 27/31,8; carteiras 15/17,6; convivencia 14/16,5).",
+  "prov_2024": "FONTE_RSA_2024 Quadros 2-4",
+  "recomendacoes_quadro2": [
+    "total/responsável/prazo/indicador em todo plano",
+    "plano próprio da CSA",
+    "monitoramento semestral"
+  ],
+  "memoria_2014_2023": "2022: Quadro 2 ações da direção em 2021; Quadro 4 RU/quadra/convivencia + transporte; Quadros 5/7/9 ações por curso. 2023: Quadro 2 ações 2022; Quadro 4 questões abertas; Quadros 5/7/10 ações por curso. 2014-2021: balanços com sugestões agregadas (transporte, quadra, RU, biblioteca, fixação docente), sem quadro SMART.",
+  "titulo_quadro": "Quadro 2, acompanhamento das 27 ações do plano 2024",
+  "nota_infra_ciclo": "SIGPOS com 56,25% de NA (pós-graduação futura): média entre respondentes. Itens 27 e 29 referem-se à Secretaria acadêmica (atendimento e qualidade).",
+  "destaques_direcao": [
+    {
+      "tema": "Espaços esportivos",
+      "acao": "Complexo Poliesportivo em andamento",
+      "prazo": "2º semestre de 2026",
+      "prioridade": "P1",
+      "meta": "média 3,0",
+      "prov": "RSA 2025, Quadro 3"
+    },
+    {
+      "tema": "Alimentação",
+      "acao": "Projeto de refeitório e solução provisória",
+      "prazo": "jun/2025 e ago/2025",
+      "prioridade": "P2",
+      "prov": "RSA 2025, Quadro 3"
+    },
+    {
+      "tema": "Internet e climatização",
+      "acao": "Parecer técnico da AGETIC",
+      "prazo": "mar/2025",
+      "prioridade": "P2",
+      "prov": "RSA 2025, Quadro 3"
+    },
+    {
+      "tema": "Retenção e evasão",
+      "acao": "Monitoria e acompanhamento pelo SISCAD",
+      "prioridade": "P1",
+      "prov": "RSA 2025, Quadro 3"
+    },
+    {
+      "tema": "Medicina Veterinária",
+      "acao": "Bloco 4 e clínica veterinária",
+      "prioridade": "P1",
+      "prov": "RSA 2025, Quadro 3"
+    },
+    {
+      "tema": "Comunicação",
+      "acao": "Divulgação do SIAI e ouvidoria itinerante",
+      "prioridade": "P2",
+      "prov": "RSA 2025, Quadro 3"
+    }
+  ],
+  "ano_ref": 2025
+}

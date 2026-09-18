@@ -1,0 +1,95 @@
+{
+  "serie": "Linhas base e metas PDU 2025-2030 por indicador (Consolidado §9.2)",
+  "nota": "Linhas base transcritas; metas 2030 transcritas. MV sem diplomacao ate 2028. Retencao e evasao: menor e melhor.",
+  "indicadores": [
+    {
+      "id": "ocup_ingresso",
+      "nome": "Taxa de Ocupação de Ingresso",
+      "base": {
+        "adm": 87.69,
+        "psi": 89.75,
+        "mat": 64.11,
+        "medvet": 96.67
+      },
+      "meta2030": {
+        "adm": 95,
+        "psi": 95,
+        "mat": 85,
+        "medvet": 95
+      }
+    },
+    {
+      "id": "ocup_curso",
+      "nome": "Taxa de Ocupação de Curso",
+      "base": {
+        "adm": 87.09,
+        "psi": 85.21,
+        "mat": 51.46,
+        "medvet": 90.21
+      },
+      "meta2030": {
+        "adm": 92,
+        "psi": 90,
+        "mat": 80,
+        "medvet": 95
+      }
+    },
+    {
+      "id": "diplomacao",
+      "nome": "Taxa de Diplomação",
+      "base": {
+        "adm": 44.61,
+        "psi": 77.49,
+        "mat": 34.78,
+        "medvet": null
+      },
+      "meta2030": {
+        "adm": 60,
+        "psi": 80,
+        "mat": 50,
+        "medvet": 75
+      }
+    },
+    {
+      "id": "retencao",
+      "nome": "Taxa de Retenção (menor, melhor)",
+      "base": {
+        "adm": 24.21,
+        "psi": 22.01,
+        "mat": 22.54,
+        "medvet": 17.59
+      },
+      "meta2030": {
+        "adm": 15,
+        "psi": 15,
+        "mat": 15,
+        "medvet": 15
+      }
+    },
+    {
+      "id": "evasao",
+      "nome": "Taxa de Evasão (menor, melhor)",
+      "base": {
+        "adm": 9.08,
+        "psi": 4.53,
+        "mat": 14.73,
+        "medvet": 1.29
+      },
+      "meta2030": {
+        "adm": 7,
+        "psi": 3,
+        "mat": 10,
+        "medvet": 2
+      }
+    }
+  ],
+  "formulas": {
+    "ocup_ingresso": "Ingressantes / Vagas Ofertadas x 100 (semestral)",
+    "ocup_curso": "Matriculados / Vagas Acumuladas x 100 (semestral)",
+    "diplomacao": "Diplomados ano X / Ingressantes (X - duracao minima) x 100 (anual)",
+    "retencao": "Retidos (alem do prazo medio) / Matriculados x 100 (semestral)",
+    "evasao": "Evadidos (EDE,EED,EEJ,EEU,EEV,EEX,FAL,ECC...) / Matriculados x 100 (semestral)",
+    "interrupcao": "(Afastamentos + Mat.Auto + Trancamentos) / Matriculados x 100 (semestral)"
+  },
+  "prov": "Consolidado §§9.2, 10.2"
+}

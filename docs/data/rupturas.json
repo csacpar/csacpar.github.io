@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "gerado_em": "2026-09-18",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "dados/curados/rupturas.json",
+    "sha256_origem": "bc79cd98a9faf1dc1d159b4bb4f115219c90acfc0d2ec21634078434c938c8ca",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "curado",
+    "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"
+  },
+  "serie": "Rupturas e marcos para leitura histórica — CPAR 2014-2025",
+  "itens": [
+    {
+      "ano": "2017",
+      "tipo": "lacuna",
+      "titulo": "Relatório sem tabela de participação geral",
+      "efeito": "O ano aparece só com o dado de professores e técnicos; o relatório institucional da UFMS desse ano também não existe"
+    },
+    {
+      "ano": "2018-2020",
+      "tipo": "trienal",
+      "titulo": "Relatório institucional da UFMS feito em bloco de três anos",
+      "efeito": "Os anos não podem ser somados; usamos apenas o recorte de 2020"
+    },
+    {
+      "ano": "2020-2021",
+      "tipo": "remoto",
+      "titulo": "Ensino remoto por causa da pandemia",
+      "efeito": "A participação caiu e o questionário, pensado para o presencial, foi aplicado à distância; não compare esses anos como tendência"
+    },
+    {
+      "ano": "2023",
+      "tipo": "curso_novo",
+      "titulo": "Medicina Veterinária entra na avaliação",
+      "efeito": "O câmpus passa a ter 4 cursos; a primeira turma se forma em 2028"
+    },
+    {
+      "ano": "2024",
+      "tipo": "greve",
+      "titulo": "Greve de cerca de 70 dias",
+      "efeito": "Menor participação desde a pandemia; em Psicologia, só 5,45% dos estudantes responderam no primeiro semestre"
+    },
+    {
+      "ano": "2025",
+      "tipo": "modelo",
+      "titulo": "Novo modelo de relatório, com plano de ações no formato SMART",
+      "efeito": "As tabelas mudaram de número; por isso o site compara pelos títulos, nunca pelos números"
+    }
+  ]
+}

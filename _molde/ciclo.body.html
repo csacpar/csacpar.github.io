@@ -1,0 +1,111 @@
+<section class="csa-hero csa-hero-pequeno">
+  <span class="badge">{{ICO:calendario}} Ciclo <span data-ano>2025</span></span>
+  <h1>Ciclo <span data-ano>2025</span> em resumo</h1>
+  <p>O que o Relatório de Autoavaliação Setorial <span data-ano>2025</span> do CPAR mostrou: quem respondeu, como a infraestrutura foi avaliada, como a comunidade vê o câmpus e o que foi feito das ações planejadas.</p>
+</section>
+<div class="alert alert-info"><span><span class="alert-title">De onde vem esta página</span>Do <a id="link-relatorio" href="metodo.html">Relatório de Autoavaliação Setorial <span data-ano>2025</span></a><span id="paginas-relatorio"></span>, aprovado pelo Conselho de Câmpus. A comunidade respondeu aos questionários no SIAI em dois momentos, no primeiro e no segundo semestre, dando notas de 1 a 5. As médias abaixo são as do relatório.</span></div>
+
+<section class="card">
+  <h2>{{ICO:grafico}} Quem respondeu</h2>
+  <p class="frase" id="frase-adesao">Carregando...</p>
+  <div class="grade-2">
+    <div>
+      <h3>Por segmento (%)</h3>
+      <div class="grafico"><canvas id="graf-seg" role="img" aria-label="Gráfico de barras da adesão por segmento nos dois semestres do ciclo"></canvas></div>
+      <div id="tab-seg"></div>
+    </div>
+    <div>
+      <h3>Estudantes por curso (%)</h3>
+      <div class="grafico"><canvas id="graf-cur" role="img" aria-label="Gráfico de barras da adesão discente por curso nos dois semestres do ciclo"></canvas></div>
+      <div id="tab-cur"></div>
+    </div>
+  </div>
+  <p class="prov" id="prov-adesao"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:barras}} Infraestrutura e serviços: todos os itens avaliados</h2>
+  <p class="frase" id="frase-infra">Carregando...</p>
+  <div class="grafico muito-alto"><canvas id="graf-infra" role="img" aria-label="Gráfico de barras horizontais com a média de cada item de infraestrutura no ciclo, em ordem crescente"></canvas></div>
+  <div id="legenda-infra"></div>
+  <div id="tab-infra"></div>
+  <p class="prov" id="prov-infra"></p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:pessoas}} Como a comunidade vê o câmpus</h2>
+  <p class="frase" id="frase-imagem">Carregando...</p>
+  <div class="cartoes" id="cartoes-imagem"></div>
+  <p class="prov" id="prov-imagem">Q1: "recomendaria o câmpus"; Q2: "o câmpus tem prestígio". <a href="infraestrutura.html#imagem">Ver a série desde 2022</a>.</p>
+</section>
+
+<section class="card">
+  <h2>{{ICO:predio}} O que foi feito das ações planejadas</h2>
+  <p class="frase" id="frase-planos">Carregando...</p>
+  <div class="grafico"><canvas id="graf-resp" role="img" aria-label="Gráfico de barras empilhadas das ações por responsável e situação"></canvas></div>
+  <div id="tab-resp"></div>
+  <h3>Plano SMART <span data-ano>2025</span> por responsável</h3>
+  <div id="smart"></div>
+  <p class="prov">Fonte: RSA <span data-ano>2025</span>, quadro de acompanhamento das ações do plano anterior e quadros de planos SMART por responsável. P1, P2 e P3 indicam prioridade.</p>
+</section>
+
+<script>
+(function () {
+  var SEG = [["direcao", "Direção"], ["coordenadores", "Coordenações"], ["docentes", "Professores"], ["discentes", "Estudantes"], ["tecnicos", "Técnicos"], ["total", "Total"]];
+  var CUR = [["adm", "Administração"], ["mat", "Matemática"], ["medvet", "Medicina Veterinária"], ["psi", "Psicologia"]];
+  var pct = function (v) { return v + "%"; };
+  CSA.carregar(["ciclo_atual.json"]).then(function (r) {
+    var c = r[0], ad = c.adesao, A = c.relatorio.ano_ref;
+    document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = A; });
+    if (c.relatorio.url_publica) { var lk = document.getElementById("link-relatorio"); lk.href = c.relatorio.url_publica; CSA.linksExternos(lk.parentNode); }
+    if (c.relatorio.paginas) document.getElementById("paginas-relatorio").textContent = ", com " + c.relatorio.paginas + " páginas";
+    var s1 = ad[A + "-1"], s2 = ad[A + "-2"] || { segmentos: {}, cursos: {} };
+    document.getElementById("frase-adesao").innerHTML = "<strong>" + CSA.fmtPct(s1.segmentos.total) + " da comunidade</strong> respondeu em " + A + ".1" + (s2.segmentos.total !== undefined ? " e " + CSA.fmtPct(s2.segmentos.total) + " em " + A + ".2" : "") + ". Professores e técnicos participam muito (acima de 85%); entre os estudantes a adesão ficou em " + CSA.fmtPct(s1.segmentos.discentes, 1) + " e " + CSA.fmtPct(s2.segmentos.discentes, 1) + ".";
+    CSA.grafico("graf-seg", { type: "bar", data: { labels: SEG.map(function (x) { return x[1]; }), datasets: [
+      { label: A + ".1", data: SEG.map(function (x) { return s1.segmentos[x[0]]; }) },
+      { label: A + ".2", data: SEG.map(function (x) { return s2.segmentos[x[0]]; }) }] },
+      options: { scales: { y: { min: 0, max: 100, ticks: { callback: pct } } }, plugins: { tooltip: { callbacks: { label: function (i) { return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y, 1); } } } } } });
+    CSA.tabelaDados("tab-seg", ["Segmento", A + ".1", A + ".2"], SEG.map(function (x) { return [x[1], CSA.fmtPct(s1.segmentos[x[0]], 1), s2.segmentos[x[0]] === null ? null : CSA.fmtPct(s2.segmentos[x[0]], 1)]; }));
+    CSA.grafico("graf-cur", { type: "bar", data: { labels: CUR.map(function (x) { return x[1]; }), datasets: [
+      { label: A + ".1", data: CUR.map(function (x) { return s1.cursos[x[0]]; }) },
+      { label: A + ".2", data: CUR.map(function (x) { return s2.cursos[x[0]]; }) }] },
+      options: { scales: { y: { min: 0, max: 50, ticks: { callback: pct } } }, plugins: { tooltip: { callbacks: { label: function (i) { return " " + i.dataset.label + ": " + CSA.fmtPct(i.parsed.y); } } } } } });
+    CSA.tabelaDados("tab-cur", ["Curso", A + ".1", A + ".2"], CUR.map(function (x) { return [x[1], CSA.fmtPct(s1.cursos[x[0]]), CSA.fmtPct(s2.cursos[x[0]])]; }));
+    document.getElementById("prov-adesao").textContent = "Fonte: RSA " + A + ", " + ad.titulo_tabela + ", p. " + ad.pagina + "." + (ad.defeito_original ? " Observação do relatório: " + ad.defeito_original + "." : "");
+
+    var inf = c.infraestrutura, itens = inf.itens.slice().sort(function (a, b) { return a.media - b.media; });
+    var nFrag = itens.filter(function (x) { return x.classe === "fragilidade"; }).length, nOp = itens.filter(function (x) { return x.classe === "oportunidade"; }).length;
+    document.getElementById("frase-infra").innerHTML = "Dos " + itens.length + " itens, <strong>" + (itens.length - nFrag - nOp) + " estão bem avaliados</strong>, " + nOp + " são oportunidades de melhoria e " + nFrag +
+      " é fragilidade: " + CSA.esc(itens[0].rotulo.toLowerCase()) + ", com média " + CSA.fmtNum(itens[0].media) + ".";
+    CSA.grafico("graf-infra", { type: "bar", data: { labels: itens.map(function (x) { return x.rotulo; }), datasets: [{ label: "Média " + A,
+      data: itens.map(function (x) { return x.media; }), backgroundColor: itens.map(function (x) { return CSA.classe(x.media).cor; }), borderColor: itens.map(function (x) { return CSA.classe(x.media).cor; }) }] },
+      options: { indexAxis: "y", interaction: { mode: "nearest", axis: "y", intersect: false }, plugins: { legend: { display: false }, cortesCPA: { eixo: "x" },
+        tooltip: { callbacks: { label: function (i) { var x = itens[i.dataIndex]; return " " + CSA.fmtNum(x.media) + " (" + CSA.classe(x.media).rotulo + ")"; }, afterBody: function (i) { var x = itens[i[0].dataIndex]; return x.serie ? Object.keys(x.serie).filter(function (k) { return k !== String(A); }).map(function (k) { return k + ": " + CSA.fmtNum(x.serie[k]); }).join(" · ") : "Item sem série anterior"; } } } },
+        scales: { x: { min: 1, max: 5, ticks: { stepSize: 0.5 } }, y: { ticks: { autoSkip: false, font: { size: 11 } } } } } });
+    document.getElementById("legenda-infra").innerHTML = CSA.legendaSemaforo();
+    var anosAnt = itens[0].serie ? Object.keys(itens[0].serie).filter(function (k) { return k !== String(A); }).reverse() : [];
+    CSA.tabelaDados("tab-infra", ["Item", "Média " + A, "Classificação"].concat(anosAnt), itens.map(function (x) {
+      return [x.rotulo, CSA.fmtNum(x.media), CSA.classe(x.media).rotulo].concat(anosAnt.map(function (k) { return x.serie ? CSA.fmtNum(x.serie[k]) : null; })); }));
+    document.getElementById("prov-infra").textContent = "Fonte: RSA " + A + ", " + inf.titulo_tabela + ", p. " + inf.pagina + ". " + (inf.nota || "");
+
+    var im = c.imagem;
+    function tile(v, r, d) { return '<div class="cartao ' + CSA.classe(v).id + '"><span class="valor">' + CSA.fmtNum(v) + '</span><span class="rotulo">' + r + '</span><span class="detalhe">' + d + "</span></div>"; }
+    document.getElementById("cartoes-imagem").innerHTML = tile(im.estudantes.recomendar_q1, "Estudantes recomendariam", "Q1, p. " + im.estudantes.pagina) + tile(im.estudantes.prestigio_q2, "Estudantes: o câmpus tem prestígio", "Q2, p. " + im.estudantes.pagina) +
+      tile(im.servidores.recomendar_q1, "Servidores recomendariam", "Q1, p. " + im.servidores.pagina) + tile(im.servidores.prestigio_q2, "Servidores: o câmpus tem prestígio", "Q2, p. " + im.servidores.pagina);
+    document.getElementById("frase-imagem").innerHTML = "Apesar das fragilidades de infraestrutura, <strong>a comunidade recomenda o câmpus</strong>: médias de " + CSA.fmtNum(im.estudantes.recomendar_q1) + " entre estudantes e " + CSA.fmtNum(im.servidores.recomendar_q1) + " entre servidores, todas na faixa bem avaliada.";
+
+    document.getElementById("prov-imagem").insertAdjacentText("afterbegin", "Fonte: RSA " + A + ", " + im.titulo_tabelas + ". ");
+    var pl = c.planos, rs = pl.por_responsavel;
+    document.getElementById("frase-planos").innerHTML = "<strong>" + pl.concluidas + " das " + pl.total + " ações</strong> do plano anterior foram concluídas e " + pl.em_andamento + " seguem em andamento. A Direção concentra " + rs[0].total + " ações, a maior parte ainda em execução (obras e serviços de maior porte).";
+    CSA.grafico("graf-resp", { type: "bar", data: { labels: rs.map(function (x) { return x.resp; }), datasets: [
+      { label: "Concluídas", data: rs.map(function (x) { return x.conc; }), cor: CSA.COR.bem },
+      { label: "Em andamento", data: rs.map(function (x) { return x.and; }), cor: CSA.COR.oport },
+      { label: "Não iniciadas", data: rs.map(function (x) { return x.nao; }), cor: CSA.COR.frag }] },
+      options: { indexAxis: "y", scales: { x: { stacked: true, ticks: { stepSize: 1 } }, y: { stacked: true } } } });
+    CSA.tabelaDados("tab-resp", ["Responsável", "Concluídas", "Em andamento", "Não iniciadas", "Total"], rs.map(function (x) { return [x.resp, x.conc, x.and, x.nao, x.total]; }));
+    document.getElementById("smart").innerHTML = pl.smart_atual.map(function (g) {
+      return '<details class="tabela-dados"><summary>' + CSA.esc(g.resp) + " (" + g.acoes.length + " ações)</summary><ul>" + g.acoes.map(function (a) { return "<li>" + CSA.esc(a) + "</li>"; }).join("") + "</ul></details>";
+    }).join("");
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>

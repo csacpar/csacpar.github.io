@@ -1,0 +1,87 @@
+{
+  "serie": "Ingressantes anuais por curso — CPAR 2017-2025 (fonte SISCAD/SIGAA via Consolidado)",
+  "nota_metodo": "Tabela do §8.2 sem cabecalho na copia da base; ordem Adm/Psi/Mat/MV/total confirmada por soma das linhas aos totais. Linha 2017 ausente na copia: valores derivados por subtracao exata (totais menos 2018-2025), marcados com derivado=true, nao transcritos. MV inexistente antes de 2023 (null=lacuna, nunca zero).",
+  "anos": [
+    {
+      "rotulo": "2017*",
+      "adm": 65,
+      "psi": 69,
+      "mat": 46,
+      "medvet": null,
+      "total": 180,
+      "derivado": true
+    },
+    {
+      "rotulo": "2018",
+      "adm": 47,
+      "psi": 54,
+      "mat": 38,
+      "medvet": null,
+      "total": 139
+    },
+    {
+      "rotulo": "2019",
+      "adm": 50,
+      "psi": 47,
+      "mat": 43,
+      "medvet": null,
+      "total": 140
+    },
+    {
+      "rotulo": "2020",
+      "adm": 50,
+      "psi": 42,
+      "mat": 40,
+      "medvet": null,
+      "total": 132
+    },
+    {
+      "rotulo": "2021",
+      "adm": 62,
+      "psi": 39,
+      "mat": 25,
+      "medvet": null,
+      "total": 126
+    },
+    {
+      "rotulo": "2022",
+      "adm": 46,
+      "psi": 37,
+      "mat": 23,
+      "medvet": null,
+      "total": 106
+    },
+    {
+      "rotulo": "2023",
+      "adm": 59,
+      "psi": 48,
+      "mat": 26,
+      "medvet": 37,
+      "total": 170
+    },
+    {
+      "rotulo": "2024",
+      "adm": 54,
+      "psi": 43,
+      "mat": 17,
+      "medvet": 39,
+      "total": 153
+    },
+    {
+      "rotulo": "2025",
+      "adm": 55,
+      "psi": 45,
+      "mat": 31,
+      "medvet": 46,
+      "total": 177
+    }
+  ],
+  "totais": {
+    "adm": 488,
+    "psi": 424,
+    "mat": 289,
+    "medvet": 122,
+    "total": 1323
+  },
+  "prov": "Consolidado §8.2 + §11.1 (1.323 ingressantes em 17 semestres, 2017.1-2025.1)"
+}

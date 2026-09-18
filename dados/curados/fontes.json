@@ -1,0 +1,68 @@
+{
+  "base": "../base_de_conhecimento",
+  "series": [
+    {
+      "nome": "RAAI 2014-2025 com foco CPAR",
+      "arquivos": [
+        "RAAI_2014_UFMS.md",
+        "RAAI_2015_UFMS.md",
+        "RAAI_2016_UFMS.md",
+        "RAAI_2018_UFMS.md",
+        "RAAI_2019_UFMS.md",
+        "RAAI_2020_UFMS.md",
+        "RAAI_2021_UFMS.md",
+        "RAAI_2022_UFMS.md",
+        "RAAI_2023_UFMS.md",
+        "RAAI_2024_UFMS.md",
+        "RAAI_2025_UFMS.md"
+      ],
+      "nota": "2017 lacuna RAAI"
+    },
+    {
+      "nome": "RSA 2014-2025 analiticos",
+      "arquivos": [
+        "RSA_2014_CPAR.md",
+        "RSA_2015_CPAR.md",
+        "RSA_2016_CPAR.md",
+        "RSA_2017_CPAR.md",
+        "RSA_2018_CPAR.md",
+        "RSA_2019_CPAR.md",
+        "RSA_2020_CPAR.md",
+        "RSA_2021_CPAR.md",
+        "RSA_2022_CPAR.md",
+        "RSA_2023_CPAR.md",
+        "RSA_2024_CPAR.md",
+        "RSA_2025_CPAR.md"
+      ],
+      "nota": "Preservados; nao sobrescrever"
+    },
+    {
+      "nome": "FONTE_RSA 2014-2025",
+      "arquivos": [
+        "fontes_estruturadas/FONTE_RSA_2014.md",
+        "fontes_estruturadas/FONTE_RSA_2015.md",
+        "fontes_estruturadas/FONTE_RSA_2016.md",
+        "fontes_estruturadas/FONTE_RSA_2017.md",
+        "fontes_estruturadas/FONTE_RSA_2018.md",
+        "fontes_estruturadas/FONTE_RSA_2019.md",
+        "fontes_estruturadas/FONTE_RSA_2020.md",
+        "fontes_estruturadas/FONTE_RSA_2021.md",
+        "fontes_estruturadas/FONTE_RSA_2022.md",
+        "fontes_estruturadas/FONTE_RSA_2023.md",
+        "fontes_estruturadas/FONTE_RSA_2024.md",
+        "fontes_estruturadas/FONTE_RSA_2025.md"
+      ],
+      "nota": "Fonte primaria estruturada; visao + mermaid onde aplicavel"
+    },
+    {
+      "nome": "Consolidado + protocolo + esquema",
+      "arquivos": [
+        "Relatorio_Consolidado_Indicadores_CPAR.md",
+        "AGENTS.md",
+        "../esquema_banco/schema_cpar_historico.sql",
+        "../esquema_banco/dicionario_cpar_historico.md"
+      ],
+      "nota": "Indicadores 2017.1-2025.1; regras AGENTS.md"
+    }
+  ]
+}

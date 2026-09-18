@@ -1,0 +1,56 @@
+{
+  "serie": "Imagem geral — recomendar (Q1) e prestigio (Q2), 2022-2025",
+  "nota": "2022 Tabelas 18/19 p.22; 2023 Tabelas 18/19; 2024 Tabelas 18/19; 2025 Tabelas 20/21. Escala 1-5.",
+  "estudantes": [
+    {
+      "ano": "2022",
+      "q1": 4.77,
+      "q2": 4.83,
+      "prov": "TAB18 p.22: recomendo + prestigio pontos fortes"
+    },
+    {
+      "ano": "2023",
+      "q1": 3.83,
+      "q2": 4.5,
+      "prov": "TAB18: prestigio forte; ambiente oportunidade"
+    },
+    {
+      "ano": "2024",
+      "q1": 4.41,
+      "q2": 4.53,
+      "prov": "TAB18: recomendar 83,78%; prestigio 86,49%"
+    },
+    {
+      "ano": "2025",
+      "q1": 4.64,
+      "q2": 4.68,
+      "prov": "TAB20: sem discordancia total; prestigio acima"
+    }
+  ],
+  "servidores": [
+    {
+      "ano": "2022",
+      "q1": 3.67,
+      "q2": 4.0,
+      "prov": "TAB19 p.22: Q1 oportunidade (66,7% neutros)"
+    },
+    {
+      "ano": "2023",
+      "q1": 3.67,
+      "q2": 4.0,
+      "prov": "TAB19: recomendar oportunidade; prestigio unanime"
+    },
+    {
+      "ano": "2024",
+      "q1": 4.36,
+      "q2": 4.76,
+      "prov": "TAB19: recomendar 88%; prestigio 96%"
+    },
+    {
+      "ano": "2025",
+      "q1": 4.6,
+      "q2": 4.69,
+      "prov": "TAB21: prestigio maior; Q1 com 3,85% discordancia total"
+    }
+  ]
+}

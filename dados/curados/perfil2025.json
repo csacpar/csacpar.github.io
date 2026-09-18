@@ -1,0 +1,49 @@
+{
+  "serie": "Perfil do CPAR em 2025.1 — corpo discente ativo (SISCAD/SIGAA via Consolidado §8.5)",
+  "total": 519,
+  "fem": 350,
+  "masc": 169,
+  "fem_pct": 67.44,
+  "masc_pct": 32.56,
+  "ocup_geral": 76.32,
+  "total_vagas": 680,
+  "cursos": [
+    {
+      "id": "mat",
+      "nome": "Matemática",
+      "mat": 53,
+      "pct_cpar": 10.21,
+      "vagas": 160,
+      "ocup": 33.13,
+      "status": "CRÍTICO"
+    },
+    {
+      "id": "psi",
+      "nome": "Psicologia",
+      "mat": 170,
+      "pct_cpar": 32.75,
+      "vagas": 200,
+      "ocup": 85.0,
+      "status": "Satisfatório"
+    },
+    {
+      "id": "adm",
+      "nome": "Administração",
+      "mat": 181,
+      "pct_cpar": 34.87,
+      "vagas": 200,
+      "ocup": 90.5,
+      "status": "Satisfatório"
+    },
+    {
+      "id": "medvet",
+      "nome": "Medicina Veterinária",
+      "mat": 115,
+      "pct_cpar": 22.16,
+      "vagas": 120,
+      "ocup": 95.83,
+      "status": "Excelente"
+    }
+  ],
+  "prov": "Consolidado §8.5 (Vagas Acum. = Vagas Anuais x Duracao Minima, §10.2)"
+}
