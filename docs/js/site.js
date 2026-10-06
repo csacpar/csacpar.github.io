@@ -184,7 +184,73 @@
   }
   document.addEventListener("DOMContentLoaded", nav);
 
+  /* ── v2: entrada ao rolar, contadores, curso escolhido, botão de participação ── */
+  var semMovimento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function revelar(raiz) {
+    var els = (raiz || document).querySelectorAll(".revelar:not(.visivel)");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("visivel"); }); return; }
+    var obs = new IntersectionObserver(function (ent) {
+      ent.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visivel"); obs.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    els.forEach(function (el) { obs.observe(el); });
+  }
+  /* Anima de 0 até o valor publicado; o texto final é sempre o valor formatado por fmt. */
+  function contador(el, valor, fmt) {
+    fmt = fmt || function (v) { return fmtNum(v); };
+    if (valor === null || valor === undefined) { el.textContent = "sem dado"; return; }
+    if (semMovimento || !("IntersectionObserver" in window)) { el.textContent = fmt(valor); return; }
+    el.textContent = fmt(0);
+    var obs = new IntersectionObserver(function (ent) {
+      if (!ent[0].isIntersecting) return; obs.disconnect();
+      var t0 = null, dur = 1200;
+      function passo(t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = k < 1 ? fmt(valor * e) : fmt(valor);
+        if (k < 1) requestAnimationFrame(passo);
+      }
+      requestAnimationFrame(passo);
+    }, { threshold: 0.4 });
+    obs.observe(el);
+  }
+  /* Posição (0 a 100%) de uma média na escala 1 a 5. */
+  function posEscala(m) { return m === null || m === undefined ? 0 : Math.max(0, Math.min(100, (m - 1) / 4 * 100)); }
+
+  var CURSOS = { adm: "Administração", mat: "Matemática", psi: "Psicologia", medvet: "Medicina Veterinária" };
+  function cursoAtual() {
+    var q = new URLSearchParams(location.search).get("curso");
+    if (q && CURSOS[q]) return q;
+    try { var s = localStorage.getItem("csa-curso"); if (s && CURSOS[s]) return s; } catch (e) {}
+    return null;
+  }
+  function defineCurso(c) {
+    try { if (c) localStorage.setItem("csa-curso", c); else localStorage.removeItem("csa-curso"); } catch (e) {}
+    var u = new URL(location.href);
+    if (u.searchParams.has("curso")) { u.searchParams.delete("curso"); history.replaceState(null, "", u); }
+    document.dispatchEvent(new CustomEvent("csa:curso", { detail: c }));
+  }
+
+  /* Botão fixo: some enquanto um CTA grande da página está visível. Texto do período vem de campanha.json. */
+  function ctaFixo() {
+    var b = document.querySelector(".cta-fixo"); if (!b) return;
+    loadJSON("data/campanha.json").then(function (c) {
+      if (c.siai) b.href = c.siai;
+      var p = c.periodo || {}, hoje = new Date().toISOString().slice(0, 10), sub = b.querySelector("small");
+      if (sub && p.inicio && p.fim && hoje >= p.inicio && hoje <= p.fim) sub.textContent = "Aberta: " + (p.rotulo || "até " + p.fim.split("-").reverse().join("/"));
+    }).catch(function () {});
+    var grandes = document.querySelectorAll(".btn-cta");
+    if (!grandes.length || !("IntersectionObserver" in window)) return;
+    var vis = new Set();
+    var obs = new IntersectionObserver(function (ent) {
+      ent.forEach(function (e) { if (e.isIntersecting) vis.add(e.target); else vis.delete(e.target); });
+      b.classList.toggle("escondido", vis.size > 0);
+    });
+    grandes.forEach(function (g) { obs.observe(g); });
+  }
+  document.addEventListener("DOMContentLoaded", ctaFixo);
+
   window.CSA = { PALETA: PALETA, COR: COR, fmtNum: fmtNum, fmtPct: fmtPct, fmtInt: fmtInt, classe: classe, semaforo: semaforo,
     legendaSemaforo: legendaSemaforo, esc: esc, loadJSON: loadJSON, carregar: carregar, erro: erro, tabelaDados: tabelaDados,
-    baixarCSV: baixarCSV, csvNum: csvNum, grafico: grafico, ligaFiltros: ligaFiltros, mescla: mescla, defineTema: defineTema, temaAtual: temaAtual, linksExternos: linksExternos };
+    baixarCSV: baixarCSV, csvNum: csvNum, grafico: grafico, ligaFiltros: ligaFiltros, mescla: mescla, defineTema: defineTema, temaAtual: temaAtual, linksExternos: linksExternos,
+    revelar: revelar, contador: contador, posEscala: posEscala, CURSOS: CURSOS, cursoAtual: cursoAtual, defineCurso: defineCurso };
 })();

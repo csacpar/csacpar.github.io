@@ -179,6 +179,12 @@
       "caminho": "len(raai_ufms)",
       "esperado": 11,
       "nota": "2017 lacuna RAAI"
+    },
+    {
+      "arquivo": "campanha.json",
+      "caminho": "meta_adesao_discente_pct",
+      "esperado": 35,
+      "nota": "Quadro 1 CSA 2025"
     }
   ],
   "textos_na_base": [
@@ -197,6 +203,10 @@
     {
       "arquivo": "Relatorio_Consolidado_Indicadores_CPAR.md",
       "contem": "1.323"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "adesão discente 1a etapa (meta 35 por cento"
     }
   ]
 }
