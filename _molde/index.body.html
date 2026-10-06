@@ -29,7 +29,7 @@
     </div>
     <p class="deslize" aria-hidden="true">Deslize para ver todos {{ICO:seta}}</p>
     <div class="trilho revelar" id="criticos"></div>
-    <p class="prov">Fonte: RSA <span data-ano>2025</span>, tabela de infraestrutura pela comunidade; série desde 2022 pelas tabelas equivalentes de cada ano. <a href="infraestrutura.html">Ver os 29 itens avaliados</a>.</p>
+    <p class="prov">Fonte: RSA <span data-ano>2025</span>, tabela de infraestrutura pela comunidade; série desde 2022 pelas tabelas equivalentes de cada ano. <a href="campus.html">Ver os 29 itens avaliados</a>.</p>
   </div>
 </section>
 
@@ -47,7 +47,7 @@
       </div>
       <div>
         <div class="pares revelar" id="pares"></div>
-        <p class="prov">Fonte: RSA <span data-ano>2025</span>, quadro de acompanhamento das ações e plano de ação da Direção. <a href="fragilidades.html">Ver todas as ações e responsáveis</a>.</p>
+        <p class="prov">Fonte: RSA <span data-ano>2025</span>, quadros de acompanhamento e planos de ação dos RSA 2024 e 2025. <a href="voce-pediu.html">Ver todos os pedidos e o que foi feito</a>.</p>
       </div>
     </div>
   </div>
@@ -102,9 +102,9 @@
     <p class="cap-num"><b>+</b> Quer ir mais fundo?</p>
     <h2 id="t-explorar">Doze anos de avaliação, organizados</h2>
     <div class="explorar">
-      <a href="fragilidades.html"><span class="ico-topo">{{ICO:ferramenta}}</span><strong>Você pediu, o câmpus fez</strong><span class="d">O que se repete desde 2022 e o que foi feito.</span></a>
+      <a href="voce-pediu.html"><span class="ico-topo">{{ICO:ferramenta}}</span><strong>Você pediu, o câmpus fez</strong><span class="d">O que se repete desde 2022 e o que foi feito.</span></a>
       <a href="cursos.html"><span class="ico-topo">{{ICO:chapeu}}</span><strong>Meu curso</strong><span class="d">Ingressantes, ocupação, diplomação e metas até 2030.</span></a>
-      <a href="infraestrutura.html"><span class="ico-topo">{{ICO:predio}}</span><strong>Raio-X do câmpus</strong><span class="d">Os 29 itens de infraestrutura e a imagem do câmpus.</span></a>
+      <a href="campus.html"><span class="ico-topo">{{ICO:predio}}</span><strong>Raio-X do câmpus</strong><span class="d">Os 29 itens de infraestrutura e a imagem do câmpus.</span></a>
       <a href="adesao.html"><span class="ico-topo">{{ICO:pessoas}}</span><strong>Participação</strong><span class="d">Quem respondeu a avaliação, de 2014 a hoje.</span></a>
       <a href="metodo.html"><span class="ico-topo">{{ICO:livro}}</span><strong>Fontes</strong><span class="d">De onde vêm os números e onde estão os relatórios.</span></a>
     </div>
@@ -130,12 +130,8 @@
         anos.map(function (a) { return a + " " + CSA.fmtNum(serie[a]); }).join(", ") + '">' + mini + "</div>" : "") +
       '<p class="rodape">' + CSA.esc(rec) + "</p></article>";
   }
-  function acha(criticos, tema) {
-    var p = tema.toLowerCase().split(/[\s,]+/)[0];
-    return criticos.filter(function (c) { return c.rotulo.toLowerCase().indexOf(p) >= 0; })[0];
-  }
 
-  CSA.carregar(["sintese_atual.json", "adesao_historica.json", "adesao_por_curso.json", "campanha.json"]).then(function (r) {
+  CSA.carregar(["sintese_atual.json", "adesao_historica.json", "adesao_por_curso.json", "campanha.json", "voce_pediu.json"]).then(function (r) {
     var s = r[0], hist = r[1], porCurso = r[2], camp = r[3], A = s.ano_ref, sem1 = A + "-1";
     document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = A; });
     document.querySelectorAll("[data-sem1]").forEach(function (el) { el.textContent = A + ".1"; });
@@ -162,14 +158,16 @@
       '<span><i style="background:var(--oport)"></i>' + a.em_andamento + " em andamento</span>" +
       '<span><i style="background:var(--surface-2);border:1px solid var(--border-strong)"></i>' + a.nao_iniciadas + " não iniciadas</span>" +
       '<span style="flex-basis:100%;color:var(--fg2)">de ' + a.total + " ações previstas no plano de " + (A - 1) + "</span>";
-    document.getElementById("pares").innerHTML = a.destaques.slice(0, 3).map(function (d) {
-      var c = acha(s.criticos, d.tema);
+    var vp = r[4], nomes = vp.situacoes;
+    document.getElementById("pares").innerHTML = ["esportivos", "alimentacao", "egressos"].map(function (id) {
+      var d = vp.pares.filter(function (x) { return x.id === id; })[0]; if (!d) return "";
+      var n = d.notas || {}, ult = ["2025", "2024", "2023", "2022"].filter(function (k) { return n[k] !== null && n[k] !== undefined; })[0];
+      var st = d.situacao === "concluida" ? "bem" : "";
       return '<div class="par"><div class="pediu"><small>Você pediu</small><strong>' + CSA.esc(d.tema) + "</strong>" +
-        (c ? "<div>nota " + CSA.fmtNum(c.media) + " em " + A + "</div>" : "") + '</div><div class="seta" aria-hidden="true">' + ICO_SETA + "</div>" +
-        '<div class="fez"><small>O plano do câmpus</small><strong>' + CSA.esc(d.acao) + '</strong><div class="meta-linha">' +
-        (d.prazo ? '<span class="etiqueta">até ' + CSA.esc(d.prazo) + "</span>" : "") +
-        '<span class="etiqueta ' + (d.prioridade === "P1" ? "frag" : "") + '">' + (d.prioridade === "P1" ? "Prioridade máxima" : "Prioridade " + CSA.esc(d.prioridade)) + "</span>" +
-        "</div></div></div>";
+        (ult ? "<div>nota " + CSA.fmtNum(n[ult]) + " em " + ult + "</div>" : "") + '</div><div class="seta" aria-hidden="true">' + ICO_SETA + "</div>" +
+        '<div class="fez"><small>O câmpus fez</small><strong>' + CSA.esc(d.acao.split(". ")[0].replace(/\.$/, "")) + '</strong><div class="meta-linha">' +
+        '<span class="etiqueta ' + st + '">' + CSA.esc(nomes[d.situacao]) + "</span>" +
+        (d.prazo ? '<span class="etiqueta">' + CSA.esc(d.prazo) + "</span>" : "") + "</div></div></div>";
     }).join("");
 
     // 3. O que está bom

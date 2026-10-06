@@ -1,9 +1,21 @@
 <section class="csa-hero csa-hero-pequeno">
-  <span class="badge">{{ICO:alerta}} Fragilidades e ações</span>
-  <h1>Fragilidades recorrentes e ações</h1>
-  <p>O que a comunidade apontou repetidamente de 2022 a 2025, no mesmo questionário do SIAI, e o que a gestão fez a respeito.</p>
+  <span class="badge">{{ICO:ferramenta}} Do pedido à ação</span>
+  <h1>Você pediu,<br>o câmpus fez.</h1>
+  <p>Cada problema que a comunidade aponta no SIAI precisa virar uma ação com responsável e prazo. Aqui você acompanha o que foi pedido, o que já foi feito e o que ainda está no caminho.</p>
 </section>
-<div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Um problema que aparece três anos seguidos pesa mais do que uma queda em um ano só. Comparamos apenas 2022 a 2025, porque desde 2022 o questionário é o mesmo; antes disso as perguntas eram outras e os resultados aparecem só como memória. A contagem de anos em fragilidade é a que cada relatório fez.</span></div>
+
+<div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Cada cartão junta um pedido da comunidade, com as notas de 2022 a 2025, à ação registrada nos planos do câmpus. A situação é a que o relatório mais recente informa. Quando o relatório não registra nada, a gente mostra isso também.</span></div>
+
+<section aria-labelledby="t-pares">
+  <h2 class="csa-titulo" id="t-pares">O que já andou?</h2>
+  <p class="csa-sub" id="sub-pares">Carregando...</p>
+  <div class="filtro-sit" id="filtro-sit" role="group" aria-label="Filtrar por situação"></div>
+  <div class="pedidos" id="pedidos" aria-live="polite"></div>
+  <p class="prov">Fonte: RSA 2022 a 2025 (tabelas citadas em cada cartão), RSA 2024, Quadros 2 e 4, e RSA 2025, Quadros 1 a 4. Notas de 1 a 5; abaixo de 2,50 é fragilidade.</p>
+</section>
+
+<p class="eyebrow" style="margin-top:48px">Para quem quer os detalhes</p>
+<h2 class="csa-titulo" style="margin-bottom:18px">Todos os temas e todas as ações</h2>
 
 <section class="card">
   <h2>{{ICO:grafico}} Quantos ciclos cada tema ficou em fragilidade</h2>
@@ -109,6 +121,57 @@
     document.getElementById("sit-2024").textContent = pl.situacao_2024_quadros_2_4;
     document.getElementById("recs").textContent = pl.recomendacoes_quadro2.join("; ") + ".";
     document.getElementById("memoria").textContent = pl.memoria_2014_2023;
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>
+<script>
+(function () {
+  var ANOS = ["2022", "2023", "2024", "2025"];
+  var PASSOS = [["no_plano", "Planejada"], ["em_andamento", "Em andamento"], ["concluida", "Concluída"]];
+  function trilha(sit) {
+    if (sit === "sem_registro") return '<div class="trilha-sit sem"><span>Sem registro formal no acompanhamento</span></div>';
+    var k = PASSOS.map(function (p) { return p[0]; }).indexOf(sit);
+    return '<ol class="trilha-sit">' + PASSOS.map(function (p, i) {
+      return '<li class="' + (i < k ? "feito" : i === k ? "atual" : "") + '"' + (i === k ? ' aria-current="step"' : "") + "><span>" + p[1] + "</span></li>";
+    }).join("") + "</ol>";
+  }
+  function mini(n) {
+    if (!n) return "";
+    var anos = ANOS.filter(function (a) { return a in n; });
+    return '<div class="mini" role="img" aria-label="Notas: ' + anos.map(function (a) { return a + " " + CSA.fmtNum(n[a]); }).join(", ") + '">' + anos.map(function (a) {
+      var v = n[a], c = v === null ? "" : CSA.classe(v).id;
+      return '<span class="m-' + c + '"><em>' + (v === null ? "sem dado" : CSA.fmtNum(v)) + '</em><b style="--h:' + (v === null ? 0 : CSA.posEscala(v)) + '%"></b>' + a + "</span>";
+    }).join("") + "</div>";
+  }
+  CSA.carregar(["voce_pediu.json"]).then(function (r) {
+    var d = r[0], pares = d.pares, nomes = d.situacoes, filtro = "todos";
+    var cont = {}; pares.forEach(function (p) { cont[p.situacao] = (cont[p.situacao] || 0) + 1; });
+    document.getElementById("sub-pares").innerHTML = "<strong>" + pares.length + " pedidos acompanhados</strong>: " +
+      Object.keys(nomes).filter(function (k) { return cont[k]; }).map(function (k) { return cont[k] + " " + nomes[k].toLowerCase(); }).join(", ") + ".";
+    var fs = document.getElementById("filtro-sit");
+    fs.innerHTML = '<button type="button" data-sit="todos" aria-pressed="true">Todos <b>' + pares.length + "</b></button>" +
+      Object.keys(nomes).filter(function (k) { return cont[k]; }).map(function (k) {
+        return '<button type="button" data-sit="' + k + '" aria-pressed="false" class="s-' + k + '">' + nomes[k] + " <b>" + cont[k] + "</b></button>";
+      }).join("");
+    function pinta() {
+      document.getElementById("pedidos").innerHTML = pares.filter(function (p) { return filtro === "todos" || p.situacao === filtro; }).map(function (p) {
+        var et = (p.prazo ? '<span class="etiqueta">' + CSA.esc(p.prazo) + "</span>" : "") +
+          (p.prioridade ? '<span class="etiqueta ' + (p.prioridade === "P1" ? "frag" : "") + '">' + (p.prioridade === "P1" ? "Prioridade máxima" : "Prioridade " + CSA.esc(p.prioridade)) + "</span>" : "");
+        return '<article class="pc s-' + p.situacao + ' revelar visivel"><header><h3>' + CSA.esc(p.tema) + '</h3><span class="status s-' + p.situacao + '">' + CSA.esc(nomes[p.situacao]) + "</span></header>" +
+          '<div class="pc-corpo"><div class="pc-pediu"><small>Você pediu</small><p>' + CSA.esc(p.pedido) + "</p>" + mini(p.notas) +
+          (p.notas_obs ? '<p class="nota">' + CSA.esc(p.notas_obs) + "</p>" : "") + (p.evidencia ? '<p class="evid">' + CSA.esc(p.evidencia) + "</p>" : "") + "</div>" +
+          '<div class="pc-seta" aria-hidden="true">{{ICO:seta}}</div>' +
+          '<div class="pc-fez"><small>O câmpus fez</small><p>' + CSA.esc(p.acao) + "</p>" + trilha(p.situacao) + (et ? '<div class="meta-linha">' + et + "</div>" : "") + "</div></div>" +
+          '<footer class="prov">Fonte: ' + CSA.esc(p.prov) + "</footer></article>";
+      }).join("");
+    }
+    fs.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      filtro = b.dataset.sit;
+      fs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      pinta();
+    });
+    pinta();
   }).catch(function (e) { CSA.erro(e.message); });
 })();
 </script>

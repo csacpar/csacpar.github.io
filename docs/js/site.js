@@ -6,6 +6,13 @@
 
   var CORTE_FRAG = 2.5, CORTE_OPORT = 3.5;
 
+  // v2: gráficos mais limpos (sem linha de eixo, texto maior, barras arredondadas)
+  if (window.Chart) {
+    Chart.defaults.font.size = 13;
+    Chart.defaults.scale.border = Object.assign(Chart.defaults.scale.border || {}, { display: false });
+    Chart.defaults.plugins.tooltip.padding = 12;
+  }
+
   // Paleta categórica validada (Delta E CVD >= 8, contraste >= 3:1 sobre branco).
   // Ordem fixa por entidade: nunca reatribuir cor ao filtrar séries.
   var PALETA = ["#0088B7", "#C2410C", "#5B3FA6", "#008F5A", "#7B8794"];
@@ -169,7 +176,7 @@
     var t = document.querySelector(".csa-nav-toggle"), n = document.querySelector(".csa-nav");
     if (t && n) t.addEventListener("click", function () { var aberta = n.classList.toggle("aberta"); t.setAttribute("aria-expanded", aberta ? "true" : "false"); });
     var pagina = document.body.getAttribute("data-pagina");
-    document.querySelectorAll(".csa-nav a[data-pagina]").forEach(function (a) {
+    document.querySelectorAll(".csa-nav a[data-pagina], .barra-app a[data-pagina]").forEach(function (a) {
       if (a.getAttribute("data-pagina") === pagina) a.setAttribute("aria-current", "page");
     });
     var ano = document.getElementById("ano-atual"); if (ano) ano.textContent = new Date().getFullYear();
