@@ -1,0 +1,12 @@
+{
+  "serie": "Configuração editorial da campanha de participação (não é dado da base)",
+  "nota": "Período e link são mantidos pela CSA a cada etapa do SIAI. A meta de adesão vem do Quadro 1 (Plano da CSA 2025) do RSA 2025.",
+  "siai": "https://siai.ufms.br/avaliacao-institucional",
+  "periodo": {
+    "inicio": "2026-10-05",
+    "fim": "2026-11-08",
+    "rotulo": "até 8 de novembro"
+  },
+  "meta_adesao_discente_pct": 35,
+  "meta_prov": "RSA 2025, Quadro 1, Plano da CSA 2025: adesão discente 1a etapa, meta 35 por cento, P2, mar-out/2026"
+}

@@ -179,6 +179,41 @@
       "caminho": "len(raai_ufms)",
       "esperado": 11,
       "nota": "2017 lacuna RAAI"
+    },
+    {
+      "arquivo": "campanha.json",
+      "caminho": "meta_adesao_discente_pct",
+      "esperado": 35,
+      "nota": "Quadro 1 CSA 2025"
+    },
+    {
+      "arquivo": "voce_pediu.json",
+      "caminho": "pares[id=esportivos].notas.2025",
+      "esperado": 1.87,
+      "nota": "RSA 2025 Tabela 19 item 12"
+    },
+    {
+      "arquivo": "voce_pediu.json",
+      "caminho": "pares[id=egressos].situacao",
+      "esperado": "concluida",
+      "nota": "RSA 2024 Quadro 2; RSA 2025 Quadro 2"
+    },
+    {
+      "arquivo": "voce_pediu.json",
+      "caminho": "pares[id=transporte].situacao",
+      "esperado": "sem_registro",
+      "nota": "RSA 2025 Quadro 2, transporte sem registro"
+    },
+    {
+      "arquivo": "voce_pediu.json",
+      "caminho": "pares[id=divulgacao].notas.2022",
+      "esperado": 1.33,
+      "nota": "RSA 2022 Tabela 3 Q2 servidores"
+    },
+    {
+      "arquivo": "voce_pediu.json",
+      "caminho": "len(pares)",
+      "esperado": 7
     }
   ],
   "textos_na_base": [
@@ -197,6 +232,26 @@
     {
       "arquivo": "Relatorio_Consolidado_Indicadores_CPAR.md",
       "contem": "1.323"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "adesão discente 1a etapa (meta 35 por cento"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2024.md",
+      "contem": "quadra 54/63,5"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2024.md",
+      "contem": "realizada com SECAC/COAC em 2025"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "RU como única sem resposta estrutural"
+    },
+    {
+      "arquivo": "fontes_estruturadas/FONTE_RSA_2025.md",
+      "contem": "transporte sem registro"
     }
   ]
 }

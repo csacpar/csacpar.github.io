@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "gerado_em": "2026-10-06",
+    "script": "scripts/gerar_dados.py",
+    "versao_pipeline": "2.0.0",
+    "origem": "dados/curados/voce_pediu.json",
+    "sha256_origem": "189049d4f35836b6cab639b6039cc455504d1f8db4315b2628ddf5617bf55387",
+    "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
+    "tipo": "curado",
+    "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"
+  },
+  "serie": "Você pediu, o câmpus fez: pares entre o que a comunidade apontou (2022 a 2025) e a ação registrada nos planos",
+  "nota_metodo": "Só entram temas com ação ou lacuna registrada nos quadros de plano e acompanhamento dos RSA 2024 e 2025. Notas são médias declaradas (escala de 1 a 5), sem recálculo; null = sem dado. A situação segue o que o relatório mais recente registra: concluida, em_andamento, no_plano (ação planejada no plano SMART 2025, ainda sem acompanhamento publicado) ou sem_registro (lacuna declarada pelo próprio relatório). Críticas sempre anonimizadas.",
+  "situacoes": {
+    "concluida": "Concluída",
+    "em_andamento": "Em andamento",
+    "no_plano": "No plano 2025",
+    "sem_registro": "Sem registro formal"
+  },
+  "pares": [
+    {
+      "id": "esportivos",
+      "tema": "Espaços esportivos",
+      "pedido": "Quadra e espaços para esporte foram classificados como fragilidade nos quatro ciclos, de 2022 a 2025.",
+      "notas": {
+        "2022": 2.77,
+        "2023": 1.7,
+        "2024": 1.46,
+        "2025": 1.87
+      },
+      "ciclos_fragil": 4,
+      "evidencia": "Em 2024, a quadra apareceu em 54 das 85 respostas abertas (63,5%).",
+      "acao": "Complexo Poliesportivo em obra, com meta de levar a nota a 3,0.",
+      "situacao": "em_andamento",
+      "prazo": "2º semestre de 2026",
+      "prioridade": "P1",
+      "prov": "RSA 2022 a 2025, tabelas de infraestrutura (item espaços esportivos); RSA 2024, Quadros 2 e 4; RSA 2025, Quadro 3"
+    },
+    {
+      "id": "alimentacao",
+      "tema": "Alimentação (RU e cantina)",
+      "pedido": "Restaurante universitário e cantina foram classificados como fragilidade de 2023 a 2025.",
+      "notas": {
+        "2022": 3.6,
+        "2023": 2.53,
+        "2024": 2.5,
+        "2025": 2.78
+      },
+      "ciclos_fragil": 3,
+      "evidencia": "Em 2024, o RU apareceu em 41 das 85 respostas abertas (48,2%).",
+      "acao": "Projeto de refeitório e solução provisória enquanto ele não sai. O relatório de 2025 ainda aponta o RU como o pedido sem resposta estrutural.",
+      "situacao": "em_andamento",
+      "prazo": "projeto até jun/2025; provisória até ago/2025",
+      "prioridade": "P2",
+      "prov": "RSA 2022 a 2025, tabelas de infraestrutura (item alimentação); RSA 2024, Quadros 2 e 4; RSA 2025, Quadro 3 e análise da gestão"
+    },
+    {
+      "id": "egressos",
+      "tema": "Acompanhamento de egressos",
+      "pedido": "O acompanhamento de quem já se formou foi avaliado como fragilidade em 2022.",
+      "notas": {
+        "2022": 2.67,
+        "2023": 3.25,
+        "2024": null,
+        "2025": null
+      },
+      "ciclos_fragil": 1,
+      "evidencia": null,
+      "acao": "Ação realizada com a SECAC e a COAC em 2025. O relatório de 2025 a registra como o resultado mensurável do período: o item saiu de fragilidade para oportunidade de melhoria.",
+      "situacao": "concluida",
+      "prazo": null,
+      "prioridade": null,
+      "prov": "RSA 2022 e 2023, tabela de ensino (questão sobre egressos); RSA 2024, Quadro 2; RSA 2025, Quadro 2"
+    },
+    {
+      "id": "internet",
+      "tema": "Internet e climatização",
+      "pedido": "A internet caiu de bem avaliada em 2022 para oportunidade de melhoria nos três ciclos seguintes.",
+      "notas": {
+        "2022": 4.05,
+        "2023": 3.24,
+        "2024": 3.44,
+        "2025": 3.49
+      },
+      "ciclos_fragil": 0,
+      "evidencia": "Em 2025, internet e climatização estão entre os temas das respostas abertas.",
+      "acao": "Parecer técnico da AGETIC sobre rede e climatização.",
+      "situacao": "no_plano",
+      "prazo": "mar/2025",
+      "prioridade": "P2",
+      "prov": "RSA 2022 a 2025, tabelas de infraestrutura (item internet); RSA 2025, Quadros 3 e 4"
+    },
+    {
+      "id": "laboratorios",
+      "tema": "Laboratórios e aulas práticas",
+      "pedido": "Laboratórios saíram de bem avaliados em 2022 para oportunidade de melhoria de 2023 a 2025.",
+      "notas": {
+        "2022": 4.43,
+        "2023": 3.38,
+        "2024": 3.47,
+        "2025": 3.68
+      },
+      "ciclos_fragil": 0,
+      "evidencia": null,
+      "acao": "Bloco 4 e clínica veterinária, com a primeira etapa em andamento.",
+      "situacao": "em_andamento",
+      "prazo": null,
+      "prioridade": "P1",
+      "prov": "RSA 2022 a 2025, tabelas de infraestrutura (item laboratórios); RSA 2025, Quadro 3 e seção 3.2"
+    },
+    {
+      "id": "divulgacao",
+      "tema": "Saber o que mudou com a avaliação",
+      "pedido": "Em 2022, servidores deram nota 1,33 para a divulgação dos resultados e das melhorias. Estudantes deram entre 3,56 e 3,90 de 2023 a 2025.",
+      "notas": {
+        "2022": 1.33,
+        "2023": 3.9,
+        "2024": 3.56,
+        "2025": 3.61
+      },
+      "notas_obs": "2022 pelos servidores; 2023 a 2025 pelos estudantes",
+      "ciclos_fragil": null,
+      "evidencia": null,
+      "acao": "Informe semestral de devolutiva da CSA, além da divulgação do SIAI e da ouvidoria itinerante pela Direção. Este site faz parte da devolutiva.",
+      "situacao": "no_plano",
+      "prazo": "fev e ago/2026",
+      "prioridade": "P2",
+      "prov": "RSA 2022, Tabela 3; RSA 2023 a 2025, tabela de percepção sobre o processo; RSA 2025, Quadros 1 e 3"
+    },
+    {
+      "id": "transporte",
+      "tema": "Transporte",
+      "pedido": "O transporte ficou abaixo de 3,00 em 2023 e 2024.",
+      "notas": {
+        "2022": 3.4,
+        "2023": 2.61,
+        "2024": 2.91,
+        "2025": 3.88
+      },
+      "ciclos_fragil": 2,
+      "evidencia": null,
+      "acao": "O relatório de 2024 tratava o tema como ação contínua, mas o acompanhamento de 2025 não traz registro formal. A nota subiu para 3,88 em 2025.",
+      "situacao": "sem_registro",
+      "prazo": null,
+      "prioridade": null,
+      "prov": "RSA 2022 a 2025, tabelas de infraestrutura (item transporte); RSA 2024, Quadro 2; RSA 2025, Quadro 2"
+    }
+  ]
+}

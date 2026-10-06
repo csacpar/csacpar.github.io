@@ -1,9 +1,25 @@
 <section class="csa-hero csa-hero-pequeno">
-  <span class="badge">{{ICO:predio}} Infraestrutura e imagem</span>
-  <h1>Infraestrutura e imagem do câmpus</h1>
-  <p>Como a comunidade avalia salas, laboratórios, serviços e espaços do CPAR, de 2022 a 2025, e o quanto recomenda o câmpus.</p>
+  <span class="badge">{{ICO:predio}} Raio-X do câmpus</span>
+  <h1>O câmpus,<br>item por item.</h1>
+  <p>Salas, laboratórios, internet, banheiros, RU, quadra, sistemas: a nota que a comunidade deu para cada um em <span data-ano>2025</span> e como ela mudou desde 2022.</p>
 </section>
 <div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Os gráficos comparam 2022 a 2025, anos em que o questionário foi o mesmo. De 2014 a 2021 as perguntas e a escala eram diferentes, então esses anos aparecem no fim da página como memória, sem linha de tendência. Quando o texto de um relatório e a tabela dele trazem números diferentes, usamos o da tabela e avisamos.</span></div>
+
+<section aria-labelledby="t-raiox">
+  <h2 class="csa-titulo" id="t-raiox">As notas de <span data-ano>2025</span></h2>
+  <p class="csa-sub" id="sub-raiox">Carregando...</p>
+  <div class="placar-classes" id="placar-classes" role="group" aria-label="Filtrar itens por classificação"></div>
+  <ul class="itens-grade" id="itens-grade" aria-live="polite"></ul>
+  <p class="prov" id="prov-raiox"></p>
+</section>
+
+<section class="img-faixa" aria-labelledby="t-img">
+  <div><h2 id="t-img">Você recomendaria o câmpus?</h2><p>Nota média dos estudantes para "recomendaria o câmpus" e "o câmpus tem prestígio", de 1 a 5.</p></div>
+  <div class="img-nums" id="img-nums"></div>
+</section>
+
+<p class="eyebrow" style="margin-top:48px">Para quem quer os detalhes</p>
+<h2 class="csa-titulo" style="margin-bottom:18px">A evolução desde 2022</h2>
 
 <section class="card">
   <h2>{{ICO:grafico}} Evolução dos itens críticos (média de 1 a 5)</h2>
@@ -97,6 +113,42 @@
         tooltip: { callbacks: { label: function (i) { return " " + i.dataset.label + ": " + CSA.fmtNum(i.parsed.y); } } } } } });
     CSA.tabelaDados("tab-img", ["Ano", "Estudantes Q1", "Estudantes Q2", "Servidores Q1", "Servidores Q2"], anos.map(function (a, i) { return [a, CSA.fmtNum(img.estudantes[i].q1), CSA.fmtNum(img.estudantes[i].q2), CSA.fmtNum(img.servidores[i].q1), CSA.fmtNum(img.servidores[i].q2)]; }));
     document.getElementById("prov-img").textContent = "Fonte: " + img.nota + " Em 2022, 66,7% dos servidores responderam de forma neutra à Q1.";
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>
+<script>
+(function () {
+  var ROT = { frag: "Fragilidade", oport: "Oportunidade de melhoria", bem: "Bem avaliado" };
+  CSA.carregar(["ciclo_atual.json", "imagem_2022_2025.json"]).then(function (r) {
+    var c = r[0], im = r[1], inf = c.infraestrutura, A = c.relatorio.ano_ref, filtro = null;
+    document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = A; });
+    var itens = inf.itens.slice().sort(function (a, b) { return (a.media === null) - (b.media === null) || a.media - b.media; });
+    var cont = { frag: 0, oport: 0, bem: 0 };
+    itens.forEach(function (x) { if (x.media !== null) cont[CSA.classe(x.media).id]++; });
+    document.getElementById("sub-raiox").innerHTML = "<strong>" + itens.length + " itens</strong> avaliados pela comunidade, do pior ao melhor. Toque numa classificação para filtrar.";
+    var pl = document.getElementById("placar-classes");
+    pl.innerHTML = ["frag", "oport", "bem"].map(function (k) {
+      return '<button type="button" class="pc-' + k + '" data-c="' + k + '" aria-pressed="false"><strong>' + cont[k] + "</strong><span>" + ROT[k] + "</span></button>";
+    }).join("");
+    function pinta() {
+      document.getElementById("itens-grade").innerHTML = itens.filter(function (x) { return !filtro || (x.media !== null && CSA.classe(x.media).id === filtro); }).map(function (x) {
+        var k = x.media === null ? "lacuna" : CSA.classe(x.media).id, s = x.serie || {};
+        var ant = s[String(A - 1)], dif = (ant !== null && ant !== undefined && x.media !== null) ? x.media - ant : null;
+        var seta = dif === null ? "" : '<span class="dif ' + (dif > 0 ? "sobe" : dif < 0 ? "desce" : "") + '" title="Em ' + (A - 1) + ": " + CSA.fmtNum(ant) + '">' + (dif > 0 ? "▲" : dif < 0 ? "▼" : "=") + " " + (A - 1) + ": " + CSA.fmtNum(ant) + "</span>";
+        return '<li class="it it-' + k + '"><span class="it-nota">' + CSA.fmtNum(x.media) + '</span><span class="it-nome">' + CSA.esc(x.rotulo) + "</span>" + seta +
+          '<span class="termo" aria-hidden="true"><i style="--pos:' + CSA.posEscala(x.media) + '%"></i></span></li>';
+      }).join("");
+    }
+    pl.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      filtro = filtro === b.dataset.c ? null : b.dataset.c;
+      pl.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.c === filtro ? "true" : "false"); });
+      pinta();
+    });
+    pinta();
+    document.getElementById("prov-raiox").textContent = "Fonte: RSA " + A + ", " + inf.titulo_tabela + ", p. " + inf.pagina + ". " + inf.nota + " Comparação com o ano anterior pela tabela equivalente de cada relatório; itens novos aparecem sem comparação.";
+    var e = im.estudantes.filter(function (x) { return x.ano === String(A); })[0] || {};
+    document.getElementById("img-nums").innerHTML = '<div><strong>' + CSA.fmtNum(e.q1) + "</strong><span>recomendaria</span></div><div><strong>" + CSA.fmtNum(e.q2) + "</strong><span>tem prestígio</span></div>";
   }).catch(function (e) { CSA.erro(e.message); });
 })();
 </script>

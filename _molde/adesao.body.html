@@ -1,9 +1,27 @@
 <section class="csa-hero csa-hero-pequeno">
-  <span class="badge">{{ICO:pessoas}} Adesão</span>
-  <h1>Quem participa da autoavaliação</h1>
-  <p>Percentual da comunidade do CPAR que respondeu aos questionários, de 2014 a 2025, por segmento e por curso.</p>
+  <span class="badge">{{ICO:pessoas}} Participação</span>
+  <h1>Quem responde<br>a avaliação?</h1>
+  <p>Professores e técnicos respondem em peso. Estudantes, ainda pouco. Veja os números de cada grupo e como a participação mudou desde 2014.</p>
 </section>
 <div class="alert alert-info"><span><span class="alert-title">Antes de olhar os gráficos</span>Em alguns anos a avaliação aconteceu uma vez; em outros, uma vez por semestre. Por isso o eixo mistura anos inteiros (2014, 2023) e semestres (2018.1, 2018.2). Os percentuais são os mesmos que aparecem nos relatórios. <span id="rupturas-resumo" class="visually-hidden"></span></span></div>
+
+<section aria-labelledby="t-seg">
+  <h2 class="csa-titulo" id="t-seg">Quem respondeu em <span data-sem1>2025.1</span></h2>
+  <p class="csa-sub">Percentual de cada grupo que respondeu a primeira etapa do ano.</p>
+  <div class="tiles tiles-seg" id="tiles-seg"></div>
+  <div class="faixa-meta">
+    <div>
+      <h3>Estudantes: <span id="disc-pct">sem dado</span> <small>de participação</small></h3>
+      <div class="meta-barra claro" id="meta-barra"><div class="feito"></div><div class="alvo"><span>meta <span id="meta-pct">35%</span></span></div></div>
+      <p>A meta da CSA para a primeira etapa de 2026 é <strong id="meta-pct2">35%</strong> dos estudantes.</p>
+    </div>
+    <a class="btn-cta" data-siai href="https://siai.ufms.br/avaliacao-institucional" rel="noopener">Responder no SIAI {{ICO:seta}}</a>
+  </div>
+  <p class="prov">Fonte: RSA <span data-ano>2025</span>, tabela de adesão; meta no Quadro 1 (Plano da CSA).</p>
+</section>
+
+<p class="eyebrow" style="margin-top:48px">Desde 2014</p>
+<h2 class="csa-titulo" style="margin-bottom:18px">Como a participação mudou</h2>
 
 <section class="card">
   <h2>{{ICO:grafico}} Adesão por segmento (%)</h2>
@@ -66,6 +84,29 @@
     document.getElementById("prov-cur").textContent = "Fonte: tabela de adesão de cada RSA. " + ac.observacao;
 
     document.getElementById("lista-rupturas").innerHTML = rup.map(function (x) { return "<li><strong>" + CSA.esc(x.ano) + ":</strong> " + CSA.esc(x.titulo) + ". <em>Efeito:</em> " + CSA.esc(x.efeito) + ".</li>"; }).join("");
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>
+<script>
+(function () {
+  CSA.carregar(["adesao_historica.json", "campanha.json"]).then(function (r) {
+    var h = r[0], camp = r[1], ult = h.pontos.filter(function (p) { return /-1$/.test(p.rotulo); }).slice(-1)[0];
+    var A = ult.rotulo.split("-")[0];
+    document.querySelectorAll("[data-sem1]").forEach(function (el) { el.textContent = A + ".1"; });
+    document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = A; });
+    var seg = [["discentes", "Estudantes"], ["docentes", "Professores"], ["tecnicos", "Técnicos"], ["total", "Câmpus inteiro"]];
+    document.getElementById("tiles-seg").innerHTML = seg.map(function (s) {
+      var v = ult[s[0] + "_pct"], abs = ult[s[0] + "_abs"];
+      return '<div class="tile ' + (s[0] === "discentes" ? "t-alerta" : "") + '"><strong>' + CSA.fmtImpresso(v) + '</strong><span class="rot">' + s[1] + "</span>" +
+        (abs ? '<span class="det">' + abs.replace("/", " de ") + " responderam</span>" : "") +
+        '<span class="barrinha" aria-hidden="true"><i style="width:' + (v || 0) + '%"></i></span></div>';
+    }).join("");
+    var meta = camp.meta_adesao_discente_pct, d = ult.discentes_pct, mb = document.getElementById("meta-barra");
+    document.getElementById("disc-pct").textContent = CSA.fmtImpresso(d);
+    document.getElementById("meta-pct").textContent = document.getElementById("meta-pct2").textContent = meta + "%";
+    mb.style.setProperty("--w", (d || 0) + "%"); mb.style.setProperty("--m", meta + "%");
+    mb.setAttribute("role", "img"); mb.setAttribute("aria-label", "Participação dos estudantes de " + CSA.fmtImpresso(d) + ", meta de " + meta + "%");
+    if (camp.siai) document.querySelectorAll("[data-siai]").forEach(function (a) { a.href = camp.siai; });
   }).catch(function (e) { CSA.erro(e.message); });
 })();
 </script>
