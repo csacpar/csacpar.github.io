@@ -6,7 +6,8 @@ validar.py: verificacao dos derivados publicados em docs/data/.
 Checa: (1) JSON validos com cabecalho _meta; (2) valores ancora de
 tests/valores_ancora.json; (3) trechos literais que precisam existir na base;
 (4) paginas HTML referenciam apenas derivados existentes; (5) ausencia de
-travessao longo nos textos do site (padrao de redacao da CSA).
+travessao longo nos textos do site (padrao de redacao da CSA); (6) links
+internos e redirecionamentos apontam para paginas existentes.
 Sai com codigo 1 em qualquer falha. Uso: python3 scripts/validar.py
 """
 import json, re, sys, pathlib
@@ -78,6 +79,19 @@ for h in htmls:
     if "—" in visivel or "–" in visivel:
         falhas.append(f"{h.name}: contem travessao longo ou meia-risca no texto")
 print(f"4. {len(htmls)} paginas HTML verificadas")
+
+# 6. Links internos e redirecionamentos apontam para paginas existentes
+nlinks = 0
+for h in htmls:
+    s = h.read_text(encoding="utf-8")
+    alvos = re.findall(r"href=\"([A-Za-z0-9_\-]+\.html)(?:#[^\"]*)?\"", s)
+    alvos += re.findall(r"http-equiv=\"refresh\" content=\"0; url=([A-Za-z0-9_\-]+\.html)\"", s)
+    for alvo in alvos:
+        nlinks += 1
+        if not (RAIZ / "docs" / alvo).exists(): falhas.append(f"{h.name}: link para {alvo} inexistente")
+        elif alvo != h.name and "http-equiv=\"refresh\"" in (RAIZ / "docs" / alvo).read_text(encoding="utf-8") and "http-equiv=\"refresh\"" not in s:
+            falhas.append(f"{h.name}: link para {alvo}, que e so um redirecionamento; apontar para a pagina nova")
+print(f"6. {nlinks} links internos conferidos")
 
 if falhas:
     print("\nFALHAS:"); [print("  - " + f) for f in falhas]; sys.exit(1)
