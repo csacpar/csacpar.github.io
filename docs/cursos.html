@@ -59,11 +59,20 @@ if(t==="dark")document.documentElement.setAttribute("data-theme","dark");})();
 </nav>
 <main class="csa-main" id="conteudo">
 <section class="csa-hero csa-hero-pequeno">
-  <span class="badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 10-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Cursos</span>
-  <h1>Os cursos em números</h1>
-  <p>Ingressantes, ocupação de vagas, diplomação e evasão dos quatro cursos do CPAR de 2017 a 2025, com as metas do PDU 2025 a 2030.</p>
+  <span class="badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 10-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Meu curso</span>
+  <h1>Como está o<br>seu curso?</h1>
+  <p>Escolha o seu curso e veja quantos colegas responderam a avaliação, quantas vagas estão ocupadas e quais são as metas até 2030.</p>
 </section>
 <div class="alert alert-info"><span><span class="alert-title">Como ler esta página</span>Os números vêm do sistema acadêmico da UFMS (SISCAD/SIGAA), reunidos pelo câmpus para o período de 2017 a 2025. O ano de 2017 está marcado com asterisco porque foi calculado a partir dos totais. A Medicina Veterinária começou em 2023 e forma a primeira turma em 2028. Diplomados e evadidos cobrem períodos diferentes, então não dá para dividir um pelo outro. Os anos de pandemia (2020 a 2022) pedem cautela na comparação.</span></div>
+
+<section class="meu-curso" aria-labelledby="t-meu">
+  <h2 class="csa-titulo" id="t-meu">Qual é o seu curso?</h2>
+  <div class="chips chips-claro" id="chips-curso" role="group" aria-label="Escolha o seu curso"></div>
+  <div id="painel-curso" aria-live="polite"></div>
+</section>
+
+<p class="eyebrow" style="margin-top:48px">Os quatro cursos lado a lado</p>
+<h2 class="csa-titulo" style="margin-bottom:18px">Comparar e ver a série completa</h2>
 
 <section class="card">
   <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg> Ingressantes por ano (total 1.323)</h2>
@@ -175,6 +184,45 @@ if(t==="dark")document.documentElement.setAttribute("data-theme","dark");})();
     });
     document.getElementById("formulas").innerHTML = Object.keys(met.formulas).map(function (k) { return "<li>" + CSA.esc(met.formulas[k]) + "</li>"; }).join("");
     document.getElementById("prov-metas").textContent = "Fonte: " + met.prov + ". Células destacadas: base distante da meta (abaixo de 80% da meta, ou acima de 150% quando menor é melhor).";
+  }).catch(function (e) { CSA.erro(e.message); });
+})();
+</script>
+<script>
+(function () {
+  function tile(cls, valor, rot, det) {
+    return '<div class="tile ' + cls + '"><strong>' + valor + '</strong><span class="rot">' + rot + '</span>' + (det ? '<span class="det">' + det + "</span>" : "") + "</div>";
+  }
+  CSA.carregar(["adesao_por_curso.json", "perfil2025.json", "ingressantes.json", "metas_pdu.json", "campanha.json"]).then(function (r) {
+    var ap = r[0], pf = r[1], ing = r[2], mt = r[3], camp = r[4];
+    var ult = ap.pontos.slice(-2), ultIng = ing.anos[ing.anos.length - 1];
+    var ind = {}; mt.indicadores.forEach(function (x) { ind[x.id] = x; });
+    var chips = document.getElementById("chips-curso");
+    chips.innerHTML = Object.keys(CSA.CURSOS).map(function (k) { return '<button type="button" data-curso="' + k + '" aria-pressed="false">' + CSA.CURSOS[k] + "</button>"; }).join("");
+    chips.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) CSA.defineCurso(b.dataset.curso); });
+    function pinta() {
+      var c = CSA.cursoAtual(), painel = document.getElementById("painel-curso");
+      chips.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.curso === c ? "true" : "false"); });
+      if (!c) { painel.innerHTML = '<p class="csa-sub">Toque no seu curso para ver os números dele. A escolha fica salva neste navegador e vale também na página inicial.</p>'; return; }
+      var a1 = ult[0][c], a2 = ult[1][c], per = pf.cursos.filter(function (x) { return x.id === c; })[0] || {};
+      var meta = camp.meta_adesao_discente_pct;
+      var abaixo = a1 && a1.pct < meta;
+      var html = '<div class="painel-curso"><h3>' + CSA.CURSOS[c] + "</h3>" +
+        '<p class="frase">' + (a1 ? "Em " + ult[0].rotulo.replace("-", ".") + ", <strong>" + a1.part + " de " + a1.total + " estudantes</strong> de " + CSA.CURSOS[c] + " responderam a avaliação (" + CSA.fmtImpresso(a1.pct) + "). " +
+          (abaixo ? "Ainda abaixo da meta de " + meta + "%: a sua resposta faz diferença." : "Acima da meta de " + meta + "%.") : "Sem dado de participação por curso neste ciclo.") + "</p>" +
+        '<div class="tiles">' +
+        tile(abaixo ? "t-alerta" : "t-bem", a1 ? CSA.fmtImpresso(a1.pct) : "sem dado", "responderam em " + ult[0].rotulo.replace("-", "."), a2 ? CSA.fmtImpresso(a2.pct) + " em " + ult[1].rotulo.replace("-", ".") : "") +
+        tile("", CSA.fmtInt(per.mat), "estudantes ativos em 2025.1", per.vagas ? CSA.fmtImpresso(per.ocup) + " das " + per.vagas + " vagas ocupadas" : "") +
+        tile("", CSA.fmtInt(ultIng[c]), "ingressantes em " + ultIng.rotulo, "") +
+        tile("", CSA.fmtImpresso(ind.evasao.base[c]), "taxa de evasão (linha de base)", "meta 2030: " + CSA.fmtImpresso(ind.evasao.meta2030[c]) + " · menor é melhor") +
+        tile("", ind.diplomacao.base[c] === null ? "sem dado" : CSA.fmtImpresso(ind.diplomacao.base[c]), "taxa de diplomação (linha de base)", ind.diplomacao.base[c] === null ? "primeira turma forma em 2028" : "meta 2030: " + CSA.fmtImpresso(ind.diplomacao.meta2030[c])) +
+        "</div>" +
+        '<div class="painel-cta"><a class="btn-cta" data-siai href="' + CSA.esc(camp.siai) + '" rel="noopener">Responder no SIAI <svg class="ico ico-sm seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><span>Quanto mais colegas do seu curso respondem, mais o relatório fala por vocês.</span></div>' +
+        '<p class="prov">Fonte: RSA 2025, tabela de adesão; Consolidado de Indicadores do CPAR (perfil 2025.1, ingressantes e linhas de base do PDU 2025 a 2030).</p></div>';
+      painel.innerHTML = html;
+      CSA.linksExternos(painel);
+    }
+    document.addEventListener("csa:curso", pinta);
+    pinta();
   }).catch(function (e) { CSA.erro(e.message); });
 })();
 </script>

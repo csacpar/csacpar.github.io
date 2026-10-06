@@ -39,7 +39,7 @@ tests/valores_ancora.json ──> scripts/validar.py confere docs/data/
 
 ## Páginas
 
-Páginas v2: `index` (home em capítulos), `voce-pediu`, `cursos` (Meu curso), `campus` (Raio-X), `adesao` (Participação), `metodo` (Fontes); `ciclo` fora do menu. `fragilidades.html` e `infraestrutura.html` são redirecionamentos gerados por `monta_todas.sh` (não editar). No celular o menu vira barra inferior (`.barra-app` em `head.html`).
+Páginas v2: `index` (home em capítulos), `voce-pediu`, `cursos` (Meu curso), `campus` (Raio-X), `adesao` (Participação), `metodo` (Fontes). `fragilidades.html`, `infraestrutura.html` e `ciclo.html` são redirecionamentos gerados por `monta_todas.sh` (não editar). No celular o menu vira barra inferior (`.barra-app` em `head.html`).
 
 `docs/*.html` são arquivos completos e independentes, montados a partir de `_molde/` (`head.html` com menu + `<nome>.body.html` + `foot.html`; `{{ICO:nome}}` vem de `icones.json`). Mudança de menu/rodapé: editar o molde e remontar tudo com `bash _molde/monta_todas.sh` (tabela de páginas, títulos e descrições dentro do script; `monta.sh` monta uma página só). Mudança em uma página só: editar `docs/<pagina>.html` e replicar no `.body.html` correspondente, senão a próxima remontagem desfaz.
 
@@ -48,6 +48,8 @@ Páginas v2: `index` (home em capítulos), `voce-pediu`, `cursos` (Meu curso), `
 `dados/curados/voce_pediu.json` liga cada pedido da comunidade à ação registrada nos quadros dos RSA, com `situacao` em `concluida | em_andamento | no_plano | sem_registro`; só entram ações documentadas, e a situação muda apenas quando um novo relatório a registrar. `dados/curados/campanha.json` é configuração editorial (link do SIAI, período da etapa aberta, meta de adesão): atualizar o `periodo` a cada etapa; o botão fixo mostra "Aberta" só dentro do período.
 
 ## Regras editoriais (o validador cobra parte delas)
+
+Na tela, percentuais impressos usam `CSA.fmtImpresso` (mantém as casas decimais do relatório); `fmtPct(v, dec)` arredonda e só serve para eixos e rótulos de gráfico.
 
 1. Base somente leitura: corrigir na origem (markdown), nunca nos derivados.
 2. Cruzar tabelas/figuras por título, nunca por número (numeração muda entre ciclos).

@@ -180,10 +180,10 @@
     // 4. Falta você
     var meta = camp.meta_adesao_discente_pct, disc = p1.discentes_pct;
     document.getElementById("meta-txt").textContent = document.getElementById("meta-txt2").textContent = CSA.fmtNum(meta, 0) + "%";
-    CSA.contador(document.getElementById("v-disc"), disc, function (v) { return CSA.fmtNum(v, 1) + "%"; });
+    CSA.contador(document.getElementById("v-disc"), disc, function (v, fim) { return fim ? CSA.fmtImpresso(v) : CSA.fmtNum(v, 1) + "%"; });
     var mb = document.getElementById("meta-barra");
     mb.style.setProperty("--w", (disc || 0) + "%"); mb.style.setProperty("--m", meta + "%");
-    mb.setAttribute("role", "img"); mb.setAttribute("aria-label", "Participação de " + CSA.fmtPct(disc, 1) + ", meta de " + meta + "%");
+    mb.setAttribute("role", "img"); mb.setAttribute("aria-label", "Participação de " + CSA.fmtImpresso(disc) + ", meta de " + meta + "%");
 
     var pc = porCurso.pontos.filter(function (p) { return p.rotulo === sem1; })[0];
     var cursos = Object.keys(CSA.CURSOS).filter(function (k) { return pc && pc[k]; }).sort(function (x, y) { return pc[y].pct - pc[x].pct; });
@@ -191,12 +191,12 @@
       var meu = CSA.cursoAtual();
       document.getElementById("rank-cursos").innerHTML = cursos.map(function (k, i) {
         return '<li class="' + (k === meu ? "meu" : "") + '"><span class="barra" style="--w:' + pc[k].pct + '%"></span><span class="pos">' + (i + 1) + 'º</span><span class="nome">' +
-          CSA.CURSOS[k] + '</span><span class="num">' + CSA.fmtPct(pc[k].pct) + "</span></li>";
+          CSA.CURSOS[k] + '</span><span class="num">' + CSA.fmtImpresso(pc[k].pct) + "</span></li>";
       }).join("");
       document.querySelectorAll("#chips button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.curso === meu ? "true" : "false"); });
       var fr = document.getElementById("frase-curso");
       if (meu && pc[meu]) fr.innerHTML = "Em " + A + ".1, <strong>" + pc[meu].part + " de " + pc[meu].total + "</strong> estudantes de " + CSA.CURSOS[meu] +
-        " responderam (" + CSA.fmtPct(pc[meu].pct) + "). " + (pc[meu].pct < meta ? "Ainda abaixo da meta de " + meta + "%." : "Acima da meta de " + meta + "%.");
+        " responderam (" + CSA.fmtImpresso(pc[meu].pct) + "). " + (pc[meu].pct < meta ? "Ainda abaixo da meta de " + meta + "%." : "Acima da meta de " + meta + "%.");
       else fr.textContent = "Escolha o seu curso para ver como ele está.";
     }
     document.getElementById("chips").innerHTML = Object.keys(CSA.CURSOS).map(function (k) {

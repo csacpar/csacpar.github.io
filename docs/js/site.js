@@ -9,7 +9,7 @@
   // v2: gráficos mais limpos (sem linha de eixo, texto maior, barras arredondadas)
   if (window.Chart) {
     Chart.defaults.font.size = 13;
-    Chart.defaults.scale.border = Object.assign(Chart.defaults.scale.border || {}, { display: false });
+    if (Chart.defaults.scale.border) Chart.defaults.scale.border.display = false;
     Chart.defaults.plugins.tooltip.padding = 12;
   }
 
@@ -23,6 +23,8 @@
     return Number(v).toFixed(dec === undefined ? 2 : dec).replace(".", ",");
   }
   function fmtPct(v, dec) { return v === null || v === undefined ? "sem dado" : fmtNum(v, dec) + "%"; }
+  /* Percentual com as casas decimais exatamente como impressas no relatório (sem arredondar). */
+  function fmtImpresso(v) { return v === null || v === undefined ? "sem dado" : String(v).replace(".", ",") + "%"; }
   function fmtInt(v) { return v === null || v === undefined ? "sem dado" : String(v).replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
 
   function classe(m) {
@@ -201,11 +203,11 @@
     }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
     els.forEach(function (el) { obs.observe(el); });
   }
-  /* Anima de 0 até o valor publicado; o texto final é sempre o valor formatado por fmt. */
+  /* Anima de 0 até o valor publicado; o texto final é fmt(valor, true), que pode usar o valor impresso sem arredondar. */
   function contador(el, valor, fmt) {
     fmt = fmt || function (v) { return fmtNum(v); };
     if (valor === null || valor === undefined) { el.textContent = "sem dado"; return; }
-    if (semMovimento || !("IntersectionObserver" in window)) { el.textContent = fmt(valor); return; }
+    if (semMovimento || !("IntersectionObserver" in window)) { el.textContent = fmt(valor, true); return; }
     el.textContent = fmt(0);
     var obs = new IntersectionObserver(function (ent) {
       if (!ent[0].isIntersecting) return; obs.disconnect();
@@ -213,7 +215,7 @@
       function passo(t) {
         if (t0 === null) t0 = t;
         var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
-        el.textContent = k < 1 ? fmt(valor * e) : fmt(valor);
+        el.textContent = k < 1 ? fmt(valor * e, false) : fmt(valor, true);
         if (k < 1) requestAnimationFrame(passo);
       }
       requestAnimationFrame(passo);
@@ -256,7 +258,7 @@
   }
   document.addEventListener("DOMContentLoaded", ctaFixo);
 
-  window.CSA = { PALETA: PALETA, COR: COR, fmtNum: fmtNum, fmtPct: fmtPct, fmtInt: fmtInt, classe: classe, semaforo: semaforo,
+  window.CSA = { PALETA: PALETA, COR: COR, fmtNum: fmtNum, fmtPct: fmtPct, fmtInt: fmtInt, fmtImpresso: fmtImpresso, classe: classe, semaforo: semaforo,
     legendaSemaforo: legendaSemaforo, esc: esc, loadJSON: loadJSON, carregar: carregar, erro: erro, tabelaDados: tabelaDados,
     baixarCSV: baixarCSV, csvNum: csvNum, grafico: grafico, ligaFiltros: ligaFiltros, mescla: mescla, defineTema: defineTema, temaAtual: temaAtual, linksExternos: linksExternos,
     revelar: revelar, contador: contador, posEscala: posEscala, CURSOS: CURSOS, cursoAtual: cursoAtual, defineCurso: defineCurso };

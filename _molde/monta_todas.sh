@@ -14,7 +14,6 @@ voce-pediu|voce-pediu|Você pediu, o câmpus fez|Temas apontados repetidamente p
 cursos|cursos|Meu curso|Ingressantes, ocupação de vagas, diplomação, evasão e metas do PDU 2025 a 2030 dos cursos do CPAR/UFMS.
 campus|campus|Raio-X do câmpus|Como a comunidade avalia a infraestrutura e os serviços do CPAR/UFMS desde 2022 e o quanto recomenda o câmpus.
 adesao|adesao|Participação|Quantas pessoas do CPAR/UFMS responderam a autoavaliação desde 2014, por segmento e por curso.
-ciclo|ciclo|Ciclo atual em resumo|Resumo do Relatório de Autoavaliação Setorial mais recente do CPAR/UFMS: adesão, infraestrutura, imagem do câmpus e situação das ações.
 metodo|metodo|Fontes|De onde vêm os números da autoavaliação do CPAR/UFMS, como ler o semáforo e onde estão os relatórios.
 TAB
 # Redirecionamentos: antigo|novo
@@ -41,4 +40,5 @@ HTML
 done <<'RED'
 fragilidades|voce-pediu
 infraestrutura|campus
+ciclo|campus
 RED

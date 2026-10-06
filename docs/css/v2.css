@@ -335,3 +335,64 @@ details.tabela-dados > summary { cursor: pointer; font-weight: 600; color: var(-
   .cta-fixo { left: auto; right: 12px; justify-content: flex-start; padding: 7px 14px 7px 8px; font-size: 0.92rem; }
   .cta-fixo img { width: 28px; height: 28px; }
 }
+
+/* ══ Etapa 4: Meu curso, Raio-X, Participação ════════════ */
+.chips-claro button { border-color: var(--border-strong); color: var(--fg1); background: var(--bg-elevated); }
+.chips-claro button:hover { background: var(--surface); }
+.chips-claro button[aria-pressed="true"] { background: var(--ufms-primary); border-color: var(--ufms-primary); color: #fff; }
+.painel-curso { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--raio-xl); padding: clamp(18px, 4vw, 30px); box-shadow: var(--sombra); }
+.painel-curso h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 4vw, 2.1rem); margin: 0 0 12px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin: 6px 0 18px; }
+.tile { background: var(--cap-alt); border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--border); }
+.tile strong { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 5vw, 2.4rem); line-height: 1.05; letter-spacing: -0.02em; }
+.tile .rot { font-weight: 600; }
+.tile .det { font-size: 0.85rem; color: var(--fg2); }
+.tile.t-alerta { background: #FFF6CC; border-color: #F2D45C; }
+.tile.t-alerta strong { color: #7A5B00; }
+[data-theme="dark"] .tile.t-alerta { background: rgba(255, 205, 0, 0.12); border-color: rgba(255, 205, 0, 0.35); }
+[data-theme="dark"] .tile.t-alerta strong { color: #FFD84D; }
+.tile.t-bem strong { color: var(--bem-text); }
+.barrinha { display: block; height: 8px; border-radius: 999px; background: var(--surface-2); margin-top: 10px; overflow: hidden; }
+.barrinha i { display: block; height: 100%; border-radius: 999px; background: var(--ufms-primary); }
+.t-alerta .barrinha i { background: #E0A800; }
+.painel-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 4px 0 8px; }
+.painel-cta span { flex: 1 1 260px; color: var(--fg2); }
+
+.placar-classes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 6px 0 18px; }
+.placar-classes button { text-align: left; border: 2px solid transparent; border-radius: 22px; padding: 14px 18px; display: flex; flex-direction: column; gap: 2px; min-height: 44px; transition: transform var(--mov), border-color var(--mov); }
+.placar-classes button strong { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); line-height: 1; }
+.placar-classes button span { font-weight: 600; font-size: 0.92rem; }
+.placar-classes .pc-frag { background: var(--frag-bg); color: var(--frag-text); }
+.placar-classes .pc-oport { background: var(--oport-bg); color: var(--oport-text); }
+.placar-classes .pc-bem { background: var(--bem-bg); color: var(--bem-text); }
+.placar-classes button:hover { transform: translateY(-2px); }
+.placar-classes button[aria-pressed="true"] { border-color: currentColor; box-shadow: var(--sombra-hover); }
+.itens-grade { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.it { --c: var(--sem-dado); position: relative; display: grid; grid-template-columns: auto 1fr; grid-template-areas: "n nome" "n dif" "t t"; column-gap: 12px; align-items: center; background: var(--bg-elevated); border: 1px solid var(--border); border-left: 6px solid var(--c); border-radius: 16px; padding: 12px 14px; box-shadow: var(--sombra); }
+.it-frag { --c: var(--frag); } .it-oport { --c: var(--oport); } .it-bem { --c: var(--bem); }
+.it-nota { grid-area: n; font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; color: var(--c); min-width: 3.2ch; }
+.it-nome { grid-area: nome; font-weight: 600; line-height: 1.25; }
+.it .dif { grid-area: dif; font-size: 0.78rem; color: var(--fg3); }
+.it .dif.sobe { color: var(--bem-text); } .it .dif.desce { color: var(--frag-text); }
+.it .termo { grid-area: t; height: 6px; margin: 10px 0 2px; display: block; }
+.it .termo i { width: 14px; height: 14px; border-width: 3px; }
+@media (max-width: 560px) { .placar-classes { gap: 8px; } .placar-classes button { padding: 12px; } .placar-classes button span { font-size: 0.78rem; } }
+
+.img-faixa { margin: 36px 0 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; background: var(--gradient-institutional); color: #fff; border-radius: var(--raio-xl); padding: clamp(22px, 4vw, 34px); box-shadow: var(--sombra-hover); }
+.img-faixa h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 4vw, 2.2rem); margin: 0 0 6px; color: #fff; }
+.img-faixa p { margin: 0; color: rgba(255, 255, 255, 0.92); max-width: 460px; }
+.img-nums { display: flex; gap: 28px; }
+.img-nums div { display: flex; flex-direction: column; }
+.img-nums strong { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 8vw, 4rem); line-height: 1; }
+.img-nums span { font-weight: 600; color: rgba(255, 255, 255, 0.9); }
+
+.tiles-seg { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 760px) { .tiles-seg { grid-template-columns: 1fr 1fr; } }
+.faixa-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 32px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--raio-xl); padding: clamp(18px, 4vw, 28px); box-shadow: var(--sombra); }
+.faixa-meta > div { flex: 1 1 320px; }
+.faixa-meta h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.3rem, 3.5vw, 1.8rem); margin: 0; }
+.faixa-meta h3 small { font-size: 0.6em; color: var(--fg2); font-weight: 600; }
+.faixa-meta p { margin: 0; color: var(--fg2); }
+.meta-barra.claro { background: var(--surface-2); margin: 16px 0 34px; }
+.meta-barra.claro .alvo { background: var(--fg1); }
+.meta-barra.claro .alvo > span { color: var(--fg1); }
