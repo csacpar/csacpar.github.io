@@ -4,7 +4,7 @@
     "script": "scripts/gerar_dados.py",
     "versao_pipeline": "2.0.0",
     "origem": "dados/curados/voce_pediu.json",
-    "sha256_origem": "abcbb2d96c81c8ce9ce3b263bee495be91533d5d81d9fa2f5195047c8c9807c0",
+    "sha256_origem": "189049d4f35836b6cab639b6039cc455504d1f8db4315b2628ddf5617bf55387",
     "regra": "Base somente leitura. Cruzar por titulo de tabela, nunca por numero. Lacuna = null. Sem recalculo.",
     "tipo": "curado",
     "nota": "Derivado revisado manualmente contra a base; ver tests/valores_ancora.json"

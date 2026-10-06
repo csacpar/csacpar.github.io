@@ -43,7 +43,8 @@ FONTE_ATUAL = BASE / "fontes_estruturadas" / f"FONTE_RSA_{ANO}.md"
 CORTE_FRAG, CORTE_OPORT = 2.50, 3.50
 
 def sha256(p):
-    return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+    # Quebras de linha normalizadas (CRLF -> LF): o hash e o mesmo no Windows e no CI (Linux)
+    return hashlib.sha256(pathlib.Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 def num(s):
     """'3,84' -> 3.84"""
