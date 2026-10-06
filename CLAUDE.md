@@ -15,7 +15,7 @@ Rodar da raiz do repositório (`site/`). No Windows, `python` no lugar de `pytho
 ```bash
 python3 scripts/gerar_dados.py              # regenera docs/data/*.json (ano = maior FONTE_RSA_<ano>.md)
 python3 scripts/gerar_dados.py --ano 2026   # fixa o ciclo mais recente
-python3 scripts/validar.py                  # âncoras, trechos na base, refs das páginas, travessões; sai 1 se falhar
+python3 scripts/validar.py                  # âncoras, trechos na base, refs das páginas, travessões, links internos; sai 1 se falhar
 python3 scripts/novo_ciclo.py --pdf RSA_2026.pdf --ano 2026 --drive-id <id>   # rascunhos RSA/FONTE do novo ciclo
 cd docs && python3 -m http.server 8000      # pré-visualização local (fetch exige servidor)
 ```
